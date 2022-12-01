@@ -5,4 +5,12 @@ export default StyleSheet.create({
     flex: 1,
     backgroundColor: Colors.primary,
   },
+  name: {
+    color: Colors.secondary,
+  },
+  image: {
+    width: 50,
+    height: 50,
+    resizeMode: 'contain',
+  },
 });
