@@ -10,7 +10,10 @@ const Stack = createNativeStackNavigator();
 const Router = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator
+        screenOptions={{
+          headerShown: false,
+        }}>
         <Stack.Screen name="TabNavigation" component={TabNavigation} />
         <Stack.Screen name="AuthNavigation" component={AuthNavigation} />
       </Stack.Navigator>
