@@ -6,12 +6,20 @@ import News from '../../screens/News';
 import Search from '../../screens/Search';
 import Bookmark from '../../screens/Bookmark';
 import Profile from '../../screens/Profile';
+import Colors from '../../constants/color';
 
 const Tab = createBottomTabNavigator();
 
 const TabNavigation = () => {
   return (
-    <Tab.Navigator>
+    <Tab.Navigator
+      screenOptions={{
+        headerTitleAlign: 'center',
+        headerStyle: {
+          backgroundColor: Colors.primary,
+        },
+        headerTintColor: 'yellow',
+      }}>
       <Tab.Screen name="Home" component={Home} />
       <Tab.Screen name="News" component={News} />
       <Tab.Screen name="Search" component={Search} />
