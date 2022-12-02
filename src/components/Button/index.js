@@ -1,1 +1,1 @@
-export {default} from './Button';
+export {LoginScreenButtons} from './LoginScreenButtons';

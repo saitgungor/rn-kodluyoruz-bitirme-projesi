@@ -14,8 +14,8 @@ const Router = () => {
         screenOptions={{
           headerShown: false,
         }}>
-        <Stack.Screen name="TabNavigation" component={TabNavigation} />
         <Stack.Screen name="AuthNavigation" component={AuthNavigation} />
+        <Stack.Screen name="TabNavigation" component={TabNavigation} />
       </Stack.Navigator>
     </NavigationContainer>
   );
