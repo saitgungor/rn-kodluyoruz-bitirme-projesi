@@ -1,8 +1,8 @@
 import React from 'react';
 import {View, Text} from 'react-native';
-import styles from './LoginScreenButtons.style';
+import styles from './LoginScreenButton.style';
 
-const LoginScreenButtons = props => {
+export const LoginScreenButton = props => {
   const {text} = props;
   return (
     <View style={styles.buttonContainer}>
@@ -10,5 +10,3 @@ const LoginScreenButtons = props => {
     </View>
   );
 };
-
-export default LoginScreenButtons;

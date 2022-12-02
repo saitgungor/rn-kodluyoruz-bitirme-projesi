@@ -2,7 +2,7 @@ import React from 'react';
 import {View, StyleSheet} from 'react-native';
 import Svg, {Image} from 'react-native-svg';
 import {width, height} from '../../../utils/ui/dimensions';
-import LoginScreenButtons from '../../../components/Button/LoginScreenButtons';
+import {LoginScreenButton} from '../../../components/Buttons';
 import styles from './Login.style';
 
 const Login = () => {
@@ -20,10 +20,10 @@ const Login = () => {
       </View>
       <View style={styles.buttonContainer}>
         <View>
-          <LoginScreenButtons text={'LOG IN'} />
+          <LoginScreenButton text={'LOG IN'} />
         </View>
         <View>
-          <LoginScreenButtons text={'REGISTER'} />
+          <LoginScreenButton text={'REGISTER'} />
         </View>
       </View>
     </View>
