@@ -4,7 +4,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 import AuthNavigation from './AuthNavigation';
-import TabNavigation from './TabNavigation';
+import HomeStack from './HomeStack';
 
 const Stack = createNativeStackNavigator();
 const Router = () => {
@@ -14,8 +14,8 @@ const Router = () => {
         screenOptions={{
           headerShown: false,
         }}>
+        <Stack.Screen name="HomeStack" component={HomeStack} />
         <Stack.Screen name="AuthNavigation" component={AuthNavigation} />
-        <Stack.Screen name="TabNavigation" component={TabNavigation} />
       </Stack.Navigator>
     </NavigationContainer>
   );

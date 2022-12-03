@@ -6,7 +6,7 @@ import News from '../../screens/News';
 import Search from '../../screens/Search';
 import Bookmark from '../../screens/Bookmark';
 import Profile from '../../screens/Profile';
-import Colors from '../../constants/color';
+import Colors from '../../utils/ui/color';
 
 const Tab = createBottomTabNavigator();
 
@@ -18,7 +18,7 @@ const TabNavigation = () => {
         headerStyle: {
           backgroundColor: Colors.primary,
         },
-        headerTintColor: 'yellow',
+        headerTintColor: Colors.quaternary,
       }}>
       <Tab.Screen name="Home" component={Home} />
       <Tab.Screen name="News" component={News} />

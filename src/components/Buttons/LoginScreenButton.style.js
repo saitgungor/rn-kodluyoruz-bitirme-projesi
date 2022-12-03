@@ -1,6 +1,7 @@
 import {StyleSheet} from 'react-native';
-import Colors from '../../constants/color';
+
 import {height} from '../../utils/ui/dimensions';
+import Colors from '../../utils/ui/color';
 
 export default StyleSheet.create({
   buttonContainer: {
