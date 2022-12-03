@@ -10,6 +10,10 @@ const Detail = ({route}) => {
   const [data, loading, error] = useFetchCoin(Config.API_URL_COIN + id);
   console.log(data);
 
+  if (loading) {
+    <Text>...loading</Text>;
+  }
+
   return (
     <View style={style.container}>
       <ScrollView>

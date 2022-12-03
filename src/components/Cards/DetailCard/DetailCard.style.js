@@ -31,4 +31,15 @@ export default StyleSheet.create({
     fontSize: 16,
     fontWeight: '500',
   },
+  changeContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 5,
+    borderRadius: 5,
+  },
+  changeIcon: {
+    marginRight: 5,
+    alignSelf: 'center',
+  },
 });
