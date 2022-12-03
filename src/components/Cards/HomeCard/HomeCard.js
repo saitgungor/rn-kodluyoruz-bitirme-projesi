@@ -13,12 +13,12 @@ const HomeCard = ({item, onSelect}) => {
   const iconName = item.change > 0 ? 'caretup' : 'caretdown';
   const iconColor = item.change > 0 ? Colors.arrowup : Colors.arrowdown;
 
-  const handleNavigation = () => {
-    navigation.navigate('Detail', {item});
+  const handleNavigation = uuid => {
+    navigation.navigate('Detail', {id: uuid, title: item.symbol});
   };
 
   return (
-    <Pressable onPress={handleNavigation}>
+    <Pressable onPress={() => handleNavigation(item.uuid)}>
       <View style={style.container}>
         <View style={style.innerContainer}>
           <Image style={style.image} source={{uri: item.iconUrl}} />
