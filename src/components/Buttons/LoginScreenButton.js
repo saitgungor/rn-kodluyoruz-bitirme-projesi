@@ -3,10 +3,10 @@ import {View, Text} from 'react-native';
 import styles from './LoginScreenButton.style';
 
 export const LoginScreenButton = props => {
-  const {text} = props;
+  const {title} = props;
   return (
     <View style={styles.buttonContainer}>
-      <Text style={styles.buttonText}>{text}</Text>
+      <Text style={styles.buttonText}>{title}</Text>
     </View>
   );
 };
