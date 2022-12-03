@@ -1,13 +1,20 @@
-import {View, Text} from 'react-native';
+import {View, Text, FlatList, ScrollView} from 'react-native';
 import React from 'react';
+import style from './Detail.style';
+import Config from 'react-native-config';
+import useFetchCoin from '../../hooks/useFetchCoin';
+import DetailCard from '../../components/Cards/DetailCard/DetailCard';
 
 const Detail = ({route}) => {
-  const {item} = route.params;
+  const {id} = route.params;
+  const [data, loading, error] = useFetchCoin(Config.API_URL_COIN + id);
+  console.log(data);
 
-  console.log(item);
   return (
-    <View>
-      <Text>Detail</Text>
+    <View style={style.container}>
+      <ScrollView>
+        <DetailCard data={data} />
+      </ScrollView>
     </View>
   );
 };
