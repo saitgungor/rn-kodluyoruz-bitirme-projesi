@@ -21,7 +21,7 @@ const HomeStack = () => {
         name="Detail"
         component={Detail}
         options={({route}) => ({
-          title: route.params.item.name,
+          title: route.params.title,
           headerTitleAlign: 'center',
           headerStyle: {
             backgroundColor: Colors.primary,
