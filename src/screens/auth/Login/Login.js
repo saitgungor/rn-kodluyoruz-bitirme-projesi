@@ -3,13 +3,14 @@ import {View, StyleSheet} from 'react-native';
 import Svg, {Image} from 'react-native-svg';
 import {width, height} from '../../../utils/ui/dimensions';
 import {LoginScreenButton} from '../../../components/Buttons';
+import {LoginScreenForm} from '../../../components/Forms';
 import styles from './Login.style';
-
+import {RegisterFormCloseButton} from '../../../components/Buttons';
 const Login = () => {
   return (
     <View style={styles.container}>
       <View style={StyleSheet.absoluteFill}>
-        <Svg height={height} width={width}>
+        <Svg height={height / 2} width={width}>
           <Image
             href={require('../../../assets/images/login-background.jpg')}
             width={width}
@@ -17,15 +18,18 @@ const Login = () => {
             preserveAspectRatio="xMidYMid slice"
           />
         </Svg>
+        <RegisterFormCloseButton title={'REGISTER'} />
       </View>
-      <View style={styles.buttonContainer}>
+      {/* <View style={styles.buttonContainer}>
         <View>
-          <LoginScreenButton text={'LOG IN'} />
+          <LoginScreenButton title={'LOG IN'} />
         </View>
         <View>
-          <LoginScreenButton text={'REGISTER'} />
+          <LoginScreenButton title={'REGISTER'} />
         </View>
-      </View>
+      </View> */}
+
+      <LoginScreenForm />
     </View>
   );
 };
