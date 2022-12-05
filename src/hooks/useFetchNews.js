@@ -7,7 +7,7 @@ const useFetchNews = url => {
   const [news, setNews] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [symbol, setSymbol] = useState('BTC');
+  const [symbol, setSymbol] = useState('crypto');
 
   const fetchNews = async () => {
     try {
