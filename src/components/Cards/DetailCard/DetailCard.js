@@ -17,9 +17,13 @@ const DetailCard = ({data}) => {
   const tagsStyles = {
     p: {
       color: Colors.secondary,
+      fontSize: 16,
+      lineHeight: 24,
     },
     h3: {
       color: Colors.quaternary,
+      fontSize: 18,
+      lineHeight: 24,
     },
   };
 
