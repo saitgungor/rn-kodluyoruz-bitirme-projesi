@@ -1,11 +1,15 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import {Text, Pressable} from 'react-native';
 import styles from './RegisterFormCloseButton.style';
 
-export const RegisterFormCloseButton = () => {
+export const RegisterFormCloseButton = ({onPress}) => {
   return (
-    <View style={styles.buttonContainer}>
+    <Pressable
+      onPress={() => {
+        onPress();
+      }}
+      style={styles.buttonContainer}>
       <Text style={styles.buttonText}>X</Text>
-    </View>
+    </Pressable>
   );
 };
