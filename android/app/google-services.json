@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "482159895771",
+    "project_id": "kodluyoruz-bitirme-projesi",
+    "storage_bucket": "kodluyoruz-bitirme-projesi.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:482159895771:android:8c006cb88f35cd6c0e18fe",
+        "android_client_info": {
+          "package_name": "com.bitirmeprojesi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "482159895771-gpfqeqch9hf5qn5b5vrhcgk28sv57via.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB6Vm93GT12jUD9W8EOU9YixmeBljUMlM4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "482159895771-gpfqeqch9hf5qn5b5vrhcgk28sv57via.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

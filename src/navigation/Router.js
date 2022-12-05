@@ -14,8 +14,8 @@ const Router = () => {
         screenOptions={{
           headerShown: false,
         }}>
-        <Stack.Screen name="AuthNavigation" component={AuthNavigation} />
         <Stack.Screen name="HomeStack" component={HomeStack} />
+        <Stack.Screen name="AuthNavigation" component={AuthNavigation} />
       </Stack.Navigator>
     </NavigationContainer>
   );
