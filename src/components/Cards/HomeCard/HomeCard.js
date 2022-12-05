@@ -5,7 +5,7 @@ import AntDesign from '../../../components/AntDesign';
 import Colors from '../../../utils/ui/color';
 import {useNavigation} from '@react-navigation/native';
 
-const HomeCard = ({item, onSelect}) => {
+const HomeCard = ({item}) => {
   const navigation = useNavigation();
   const price = item.price.slice(0, 8);
   const marketCap = item.marketCap.slice(0, 6);
