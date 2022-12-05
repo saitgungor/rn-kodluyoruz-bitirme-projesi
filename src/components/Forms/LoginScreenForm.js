@@ -4,13 +4,13 @@ import {Formik} from 'formik';
 import styles from './LoginScreenForm.style';
 import {LoginScreenButton} from '../Buttons';
 
-export const LoginScreenForm = () => {
+export const LoginScreenForm = ({isRegistering}) => {
   return (
     <Formik
       initialValues={{email: ''}}
       onSubmit={values => console.log(values)}>
       {({handleChange, handleBlur, handleSubmit, values}) => (
-        <View style={styles.formContainer}>
+        <>
           <TextInput
             placeholder="Email"
             placeholderTextColor={'black'}
@@ -19,24 +19,29 @@ export const LoginScreenForm = () => {
             onBlur={handleBlur('email')}
             value={values.email}
           />
+          {isRegistering && (
+            <TextInput
+              placeholder="Full Name"
+              placeholderTextColor={'black'}
+              style={styles.textInput}
+              onChangeText={handleChange('name')}
+              onBlur={handleBlur('name')}
+              value={values.name}
+            />
+          )}
           <TextInput
-            placeholder="Full Name"
-            placeholderTextColor={'black'}
-            style={styles.textInput}
-            onChangeText={handleChange('name')}
-            onBlur={handleBlur('name')}
-            value={values.name}
-          />
-          <TextInput
-            placeholder="Email"
+            placeholder="Password"
             placeholderTextColor={'black'}
             style={styles.textInput}
             onChangeText={handleChange('password')}
             onBlur={handleBlur('password')}
             value={values.password}
           />
-          <LoginScreenButton onPress={handleSubmit} title="REGISTER" />
-        </View>
+          <LoginScreenButton
+            onPress={handleSubmit}
+            title={`${isRegistering ? 'REGISTER' : 'LOG IN'}`}
+          />
+        </>
       )}
     </Formik>
   );

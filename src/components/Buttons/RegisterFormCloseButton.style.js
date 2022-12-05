@@ -1,6 +1,4 @@
 import {StyleSheet} from 'react-native';
-import Colors from '../../utils/ui/color';
-import {height} from '../../utils/ui/dimensions';
 
 export default StyleSheet.create({
   buttonContainer: {
@@ -19,5 +17,9 @@ export default StyleSheet.create({
     backgroundColor: 'white',
     alignItems: 'center',
     borderRadius: 20,
+    top: -20,
+  },
+  buttonText: {
+    color: 'black',
   },
 });

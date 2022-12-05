@@ -1,12 +1,15 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import {Text, Pressable} from 'react-native';
 import styles from './LoginScreenButton.style';
 
-export const LoginScreenButton = props => {
-  const {title} = props;
+export const LoginScreenButton = ({title, onPress}) => {
   return (
-    <View style={styles.buttonContainer}>
+    <Pressable
+      style={styles.buttonContainer}
+      onPress={() => {
+        onPress();
+      }}>
       <Text style={styles.buttonText}>{title}</Text>
-    </View>
+    </Pressable>
   );
 };

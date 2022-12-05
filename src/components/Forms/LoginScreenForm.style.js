@@ -10,8 +10,4 @@ export default StyleSheet.create({
     borderRadius: 25,
     paddingLeft: 10,
   },
-
-  formContainer: {
-    marginTop: 70,
-  },
 });
