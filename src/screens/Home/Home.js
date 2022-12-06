@@ -9,8 +9,6 @@ const Home = ({navigation}) => {
   const [timePeriod, setTimePeriod] = useState('24h');
   const [data, loading, error] = useFetchCoins(Config.API_URL, timePeriod);
 
-  console.log(data);
-
   const renderItem = ({item}) => <HomeCard item={item} />;
 
   return (
