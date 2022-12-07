@@ -5,11 +5,11 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 import AuthNavigation from './AuthNavigation';
 import HomeStack from './HomeStack';
-
-import {authSelector} from './../redux/authSlicer';
 import {useSelector} from 'react-redux';
+import {authSelector} from '../redux/authSlice';
 
 const Stack = createNativeStackNavigator();
+
 const Router = () => {
   const isAuth = useSelector(authSelector).isAuth;
 
