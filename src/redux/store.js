@@ -1,6 +1,5 @@
 import {configureStore} from '@reduxjs/toolkit';
 import favoriteReducer from './favoriteSlicer';
-
 import authReducer from './authSlice';
 
 const store = configureStore({
