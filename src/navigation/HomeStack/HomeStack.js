@@ -4,6 +4,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import TabNavigation from '../TabNavigation';
 import Detail from '../../screens/Detail';
 import Colors from '../../utils/ui/color';
+import AuthNavigation from '../AuthNavigation';
 
 const Stack = createNativeStackNavigator();
 
@@ -17,6 +18,7 @@ const HomeStack = () => {
           headerShown: false,
         }}
       />
+      <Stack.Screen name="AuthNavigation" component={AuthNavigation} />
       <Stack.Screen
         name="Detail"
         component={Detail}
