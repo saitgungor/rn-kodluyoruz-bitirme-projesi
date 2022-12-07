@@ -17,7 +17,7 @@ export default StyleSheet.create({
     color: Colors.primary,
     backgroundColor: Colors.secondary,
     width: '80%',
-    height: 50,
+    height: 40,
     borderRadius: 5,
     padding: 10,
     margin: 10,
