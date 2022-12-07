@@ -7,10 +7,11 @@ import HomeCard from '../../components/Cards/HomeCard';
 import Input from '../../components/Input/Input';
 import AntDesign from '../../components/AntDesign';
 import Colors from '../../utils/ui/color';
+import Error from '../../components/Animations/Error';
+import Loading from '../../components/Animations/Loading/Loading';
 
 const Search = ({navigation}) => {
-  const timePeriod = '24h';
-  const [data] = useFetchCoins(Config.API_URL, timePeriod);
+  const [data, loading, error] = useFetchCoins(Config.API_URL);
   const [searchValue, setSearchValue] = useState('');
   const [filteredList, setFilteredList] = useState(null);
 
@@ -24,6 +25,14 @@ const Search = ({navigation}) => {
   };
 
   const renderItem = ({item}) => <HomeCard item={item} />;
+
+  if (loading) {
+    return <Loading />;
+  }
+
+  if (error) {
+    return <Error />;
+  }
 
   return (
     <>
