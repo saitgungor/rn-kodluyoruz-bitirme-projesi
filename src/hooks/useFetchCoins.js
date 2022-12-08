@@ -2,7 +2,7 @@ import {useState, useEffect} from 'react';
 import axios from 'axios';
 import Config from 'react-native-config';
 
-const useFetchCoins = (url, timePeriod) => {
+const useFetchCoins = url => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -12,7 +12,7 @@ const useFetchCoins = (url, timePeriod) => {
       const response = await axios.get(url, {
         params: {
           referenceCurrencyUuid: 'yhjMzLPhuIDl',
-          timePeriod: timePeriod,
+          timePeriod: '24h',
           'tiers[0]': '1',
           orderBy: 'marketCap',
           orderDirection: 'desc',
@@ -25,9 +25,9 @@ const useFetchCoins = (url, timePeriod) => {
         },
       });
       setData(response.data.data.coins);
-      setLoading(false);
     } catch (err) {
       setError(err.message);
+    } finally {
       setLoading(false);
     }
   };

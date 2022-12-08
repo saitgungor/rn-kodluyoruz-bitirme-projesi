@@ -9,6 +9,8 @@ import Input from '../../components/Input/Input';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import AntDesign from '../../components/AntDesign';
 import Colors from '../../utils/ui/color';
+import Loading from '../../components/Animations/Loading/Loading';
+import Error from '../../components/Animations/Error';
 const News = () => {
   const [search, setSearch] = useState('');
   const [news, loading, error, setSymbol] = useFetchNews(Config.API_NEWS);
@@ -21,6 +23,14 @@ const News = () => {
   };
 
   const renderItem = ({item}) => <NewsCard news={item} />;
+
+  if (loading) {
+    return <Loading />;
+  }
+
+  if (error) {
+    return <Error />;
+  }
 
   return (
     <View style={style.container}>
@@ -40,8 +50,6 @@ const News = () => {
           </View>
         </Pressable>
       </View>
-      {loading && <Text>Loading...</Text>}
-      {error && <Text>{error.message}</Text>}
       {news.length > 0 && <FlatList data={news} renderItem={renderItem} />}
     </View>
   );

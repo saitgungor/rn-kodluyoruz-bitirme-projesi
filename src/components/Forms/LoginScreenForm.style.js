@@ -1,6 +1,9 @@
 import {StyleSheet} from 'react-native';
+import Colors from '../../utils/ui/color';
 
 export default StyleSheet.create({
+  container: {},
+
   textInput: {
     height: 50,
     borderWidth: 1,
@@ -9,5 +12,10 @@ export default StyleSheet.create({
     marginVertical: 10,
     borderRadius: 25,
     paddingLeft: 10,
+  },
+  error: {
+    color: 'red',
+    fontSize: 12,
+    marginHorizontal: 30,
   },
 });

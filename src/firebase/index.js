@@ -9,12 +9,16 @@ export const loginFB = async ({email, password}) => {
   }
 };
 
-export const registerFB = async ({email, password}) => {
+export const registerFB = async ({email, password, name}) => {
   try {
     const response = await auth().createUserWithEmailAndPassword(
       email,
       password,
     );
+    await response.user.updateProfile({
+      displayName: name,
+    });
+
     return response;
   } catch (error) {
     return error;
