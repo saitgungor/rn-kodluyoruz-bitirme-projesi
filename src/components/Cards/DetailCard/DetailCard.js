@@ -7,6 +7,7 @@ import AntDesign from '../../AntDesign';
 import Colors from '../../../utils/ui/color';
 
 import {LineChart} from 'react-native-chart-kit';
+import {height, window} from '../../../utils/ui/dimensions';
 
 const DetailCard = ({data, timePeriod, setTimePeriod}) => {
   const {width} = useWindowDimensions();
@@ -58,11 +59,11 @@ const DetailCard = ({data, timePeriod, setTimePeriod}) => {
               },
             ],
           }}
-          width={Dimensions.get('window').width} // from react-native
-          height={220}
+          width={window.width} // from react-native
+          height={window.height / 2}
           yAxisLabel="$"
           yAxisSuffix="k"
-          yAxisInterval={2} // optional, defaults to 1
+          yAxisInterval={3} // optional, defaults to 1
           chartConfig={style.chartConfig}
           bezier
           style={style.chartStyle}
