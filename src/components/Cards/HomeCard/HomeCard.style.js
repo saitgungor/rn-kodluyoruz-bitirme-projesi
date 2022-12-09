@@ -14,12 +14,9 @@ export default StyleSheet.create({
     justifyContent: 'space-between',
   },
   image: {
-    height: height * 0.05,
-    width: width * 0.1,
-    borderRadius: 100,
+    width: 40,
+    height: 40,
     marginRight: 15,
-    backgroundColor: Colors.primary,
-    alignSelf: 'center',
   },
 
   title: {
@@ -57,5 +54,8 @@ export default StyleSheet.create({
   rank: {
     fontWeight: 'bold',
     color: Colors.secondary,
+  },
+  pressed: {
+    opacity: 0.5,
   },
 });

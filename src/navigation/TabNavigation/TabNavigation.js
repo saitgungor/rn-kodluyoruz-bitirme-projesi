@@ -8,7 +8,7 @@ import Bookmark from '../../screens/Bookmark';
 import Profile from '../../screens/Profile';
 import Colors from '../../utils/ui/color';
 
-import FontAwesome from '../../components/FontAwesome';
+import Ionicons from '../../components/Ionicons';
 
 const Tab = createBottomTabNavigator();
 
@@ -43,10 +43,10 @@ const TabNavigation = () => {
         component={Home}
         options={{
           tabBarIcon: ({focused}) => (
-            <FontAwesome
+            <Ionicons
               name="home"
               size={26}
-              color={focused ? Colors.quaternary : Colors.inputColor}
+              color={focused ? Colors.quaternary : Colors.secondary}
             />
           ),
         }}
@@ -56,10 +56,10 @@ const TabNavigation = () => {
         component={News}
         options={{
           tabBarIcon: ({focused}) => (
-            <FontAwesome
-              name="globe"
+            <Ionicons
+              name="earth"
               size={26}
-              color={focused ? Colors.quaternary : Colors.inputColor}
+              color={focused ? Colors.quaternary : Colors.secondary}
             />
           ),
         }}
@@ -69,10 +69,10 @@ const TabNavigation = () => {
         component={Search}
         options={{
           tabBarIcon: ({focused}) => (
-            <FontAwesome
-              name="search-dollar"
+            <Ionicons
+              name="search-outline"
               size={26}
-              color={focused ? Colors.quaternary : Colors.inputColor}
+              color={focused ? Colors.quaternary : Colors.secondary}
             />
           ),
         }}
@@ -82,10 +82,10 @@ const TabNavigation = () => {
         component={Bookmark}
         options={{
           tabBarIcon: ({focused}) => (
-            <FontAwesome
-              name="bookmark"
+            <Ionicons
+              name="bookmarks"
               size={26}
-              color={focused ? Colors.quaternary : Colors.inputColor}
+              color={focused ? Colors.quaternary : Colors.secondary}
             />
           ),
         }}
@@ -95,10 +95,10 @@ const TabNavigation = () => {
         component={Profile}
         options={{
           tabBarIcon: ({focused}) => (
-            <FontAwesome
-              name="user"
+            <Ionicons
+              name="person"
               size={26}
-              color={focused ? Colors.quaternary : Colors.inputColor}
+              color={focused ? Colors.quaternary : Colors.secondary}
             />
           ),
         }}
@@ -118,6 +118,6 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.25,
     shadowRadius: 1.5,
-    elevation: 3,
+    elevation: 1,
   },
 });

@@ -9,6 +9,7 @@ import AntDesign from '../../components/AntDesign';
 import Colors from '../../utils/ui/color';
 import Error from '../../components/Animations/Error';
 import Loading from '../../components/Animations/Loading/Loading';
+import Searching from '../../components/Animations/Searching';
 
 const Search = () => {
   const [data, loading, error] = useFetchCoins(Config.API_URL);
@@ -22,6 +23,7 @@ const Search = () => {
         item.symbol.toLowerCase() === searchValue.toLowerCase(),
     );
     setFilteredList(filter);
+    setSearchValue('');
   };
 
   const renderItem = ({item}) => <HomeCard item={item} />;
@@ -38,7 +40,7 @@ const Search = () => {
     <>
       <View style={styles.inputContainer}>
         <Input
-          placeholder={'Search coin'}
+          placeholder={'Search for a coin'}
           value={searchValue}
           onChangeText={text => setSearchValue(text)}
           style={styles.input}
@@ -53,7 +55,11 @@ const Search = () => {
         </Pressable>
       </View>
       <View style={styles.flatListContainer}>
-        <FlatList data={filteredList || data} renderItem={renderItem} />
+        {filteredList ? (
+          <FlatList data={filteredList} renderItem={renderItem} />
+        ) : (
+          <Searching />
+        )}
       </View>
     </>
   );

@@ -1,10 +1,10 @@
-import {View, Text, Image, Pressable} from 'react-native';
+import {View, Text, Pressable} from 'react-native';
 import React from 'react';
 import style from './HomeCard.style';
 import AntDesign from '../../../components/AntDesign';
 import Colors from '../../../utils/ui/color';
 import {useNavigation} from '@react-navigation/native';
-
+import Image from 'react-native-remote-svg';
 const HomeCard = ({item}) => {
   const navigation = useNavigation();
   const price = item.price.slice(0, 8);
@@ -12,16 +12,17 @@ const HomeCard = ({item}) => {
   const name = item.name.slice(0, 18);
   const iconName = item.change > 0 ? 'caretup' : 'caretdown';
   const iconColor = item.change > 0 ? Colors.arrowup : Colors.arrowdown;
-
   const handleNavigation = uuid => {
     navigation.navigate('Detail', {id: uuid, title: item.symbol});
   };
 
   return (
-    <Pressable onPress={() => handleNavigation(item.uuid)}>
+    <Pressable
+      style={({pressed}) => pressed && style.pressed}
+      onPress={() => handleNavigation(item.uuid)}>
       <View style={style.container}>
         <View style={style.innerContainer}>
-          <Image style={style.image} source={{uri: item.iconUrl}} />
+          <Image source={{uri: item.iconUrl}} style={style.image} />
           <View>
             <Text style={style.title}>{name}</Text>
             <View style={style.detailContainer}>
