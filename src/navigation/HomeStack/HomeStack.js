@@ -5,6 +5,7 @@ import TabNavigation from '../TabNavigation';
 import Detail from '../../screens/Detail';
 import Colors from '../../utils/ui/color';
 import AuthNavigation from '../AuthNavigation';
+import Ionicons from '../../components/Ionicons';
 
 const Stack = createNativeStackNavigator();
 
@@ -29,7 +30,17 @@ const HomeStack = () => {
             backgroundColor: Colors.primary,
           },
           headerTintColor: Colors.quaternary,
-          //TODO: add icon to header
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+          headerRight: () => (
+            <Ionicons
+              name="bookmark-outline"
+              size={25}
+              color={Colors.quaternary}
+              style={{marginRight: 10}}
+            />
+          ),
         })}
       />
     </Stack.Navigator>
