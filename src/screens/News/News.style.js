@@ -7,6 +7,10 @@ export default StyleSheet.create({
     backgroundColor: Colors.primary,
     alignItems: 'center',
     justifyContent: 'center',
+    paddingBottom: 90,
+  },
+  innerContainer: {
+    flexDirection: 'row',
   },
   input: {
     color: Colors.primary,
