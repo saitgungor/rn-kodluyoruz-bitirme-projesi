@@ -7,6 +7,7 @@ const Colors = {
   arrowup: '#068317',
   arrowdown: '#da0d0d',
   inputColor: '#666666',
+  bioColor: '#bbbbbb',
   orange: '#FFA500',
 };
 

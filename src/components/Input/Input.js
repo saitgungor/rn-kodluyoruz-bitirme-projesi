@@ -30,6 +30,7 @@ const Input = ({
           ? true
           : false
       }
+      multiline={placeholder === 'Enter your bio' ? true : false}
     />
   );
 };
