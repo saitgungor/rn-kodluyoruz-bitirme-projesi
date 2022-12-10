@@ -6,6 +6,8 @@ import useFetchCoin from '../../hooks/useFetchCoin';
 import DetailCard from '../../components/Cards/DetailCard/DetailCard';
 import {useDispatch} from 'react-redux';
 import {activeProductHandler} from '../../redux/favoriteSlicer';
+import Loading from '../../components/Animations/Loading';
+import Error from '../../components/Animations/Error';
 
 const Detail = ({route}) => {
   const {id} = route.params;
@@ -14,7 +16,11 @@ const Detail = ({route}) => {
   const [data, loading, error] = useFetchCoin(Config.API_URL_COIN + id);
 
   if (loading) {
-    <Text>...loading</Text>;
+    return <Loading />;
+  }
+
+  if (error) {
+    return <Error />;
   }
 
   return (
