@@ -4,11 +4,14 @@ import style from './Detail.style';
 import Config from 'react-native-config';
 import useFetchCoin from '../../hooks/useFetchCoin';
 import DetailCard from '../../components/Cards/DetailCard/DetailCard';
+import {useDispatch} from 'react-redux';
+import {activeProductHandler} from '../../redux/favoriteSlicer';
 
 const Detail = ({route}) => {
   const {id} = route.params;
+  const dispatch = useDispatch();
+  dispatch(activeProductHandler(id));
   const [data, loading, error] = useFetchCoin(Config.API_URL_COIN + id);
-  console.log(data);
 
   if (loading) {
     <Text>...loading</Text>;
