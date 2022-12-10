@@ -4,7 +4,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Home from '../../screens/Home';
 import News from '../../screens/News';
 import Search from '../../screens/Search';
-import Bookmark from '../../screens/Bookmark';
+import Bookmark from '../../screens/Favourites';
 import Profile from '../../screens/Profile';
 import Colors from '../../utils/ui/color';
 

@@ -1,16 +1,24 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {Image, Pressable} from 'react-native';
 
 import TabNavigation from '../TabNavigation';
 import Detail from '../../screens/Detail';
 import Colors from '../../utils/ui/color';
-import AuthNavigation from '../AuthNavigation';
-import Ionicons from '../../components/Ionicons';
-import ProfileSettings from '../../screens/ProfileSettings';
+import {useSelector, useDispatch} from 'react-redux';
+import {toggeFavourite} from '../../redux/favoriteSlicer';
 
 const Stack = createNativeStackNavigator();
 
 const HomeStack = () => {
+  const dispatch = useDispatch();
+  const {favorites, activeProductId} = useSelector(state => state.favorite);
+  const favIcon = favorites.includes(activeProductId)
+    ? require('../../assets/icons/favourite.png')
+    : require('../../assets/icons/addFavourite.png');
+  const toggleFavouireHandler = id => {
+    dispatch(toggeFavourite(id));
+  };
   return (
     <Stack.Navigator>
       <Stack.Screen
@@ -20,7 +28,6 @@ const HomeStack = () => {
           headerShown: false,
         }}
       />
-      <Stack.Screen name="AuthNavigation" component={AuthNavigation} />
       <Stack.Screen
         name="Detail"
         component={Detail}
@@ -31,33 +38,12 @@ const HomeStack = () => {
             backgroundColor: Colors.primary,
           },
           headerTintColor: Colors.quaternary,
-          headerTitleStyle: {
-            fontWeight: 'bold',
-          },
           headerRight: () => (
-            <Ionicons
-              name="bookmark-outline"
-              size={25}
-              color={Colors.quaternary}
-              style={{marginRight: 10}}
-            />
+            <Pressable onPress={() => toggleFavouireHandler(route.params.id)}>
+              <Image style={{width: 22, height: 22}} source={favIcon} />
+            </Pressable>
           ),
         })}
-      />
-      <Stack.Screen
-        name="ProfileSettings"
-        component={ProfileSettings}
-        options={{
-          title: 'Edit Profile',
-          headerTitleAlign: 'center',
-          headerStyle: {
-            backgroundColor: Colors.primary,
-          },
-          headerTintColor: Colors.quaternary,
-          headerTitleStyle: {
-            fontWeight: 'bold',
-          },
-        }}
       />
     </Stack.Navigator>
   );
