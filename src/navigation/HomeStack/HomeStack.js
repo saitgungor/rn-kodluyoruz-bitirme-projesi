@@ -6,6 +6,7 @@ import Detail from '../../screens/Detail';
 import Colors from '../../utils/ui/color';
 import AuthNavigation from '../AuthNavigation';
 import Ionicons from '../../components/Ionicons';
+import ProfileSettings from '../../screens/ProfileSettings';
 
 const Stack = createNativeStackNavigator();
 
@@ -42,6 +43,21 @@ const HomeStack = () => {
             />
           ),
         })}
+      />
+      <Stack.Screen
+        name="ProfileSettings"
+        component={ProfileSettings}
+        options={{
+          title: 'Edit Profile',
+          headerTitleAlign: 'center',
+          headerStyle: {
+            backgroundColor: Colors.primary,
+          },
+          headerTintColor: Colors.quaternary,
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        }}
       />
     </Stack.Navigator>
   );
