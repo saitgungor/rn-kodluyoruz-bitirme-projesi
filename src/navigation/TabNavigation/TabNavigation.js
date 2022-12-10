@@ -12,7 +12,7 @@ import Ionicons from '../../components/Ionicons';
 
 const Tab = createBottomTabNavigator();
 
-const TabNavigation = () => {
+const TabNavigation = ({navigation}) => {
   return (
     <Tab.Navigator
       screenOptions={{
@@ -99,6 +99,15 @@ const TabNavigation = () => {
               name="person"
               size={26}
               color={focused ? Colors.quaternary : Colors.secondary}
+            />
+          ),
+          headerRight: () => (
+            <Ionicons
+              name="settings-outline"
+              size={25}
+              color={Colors.quaternary}
+              style={{marginRight: 10}}
+              onPress={() => navigation.navigate('ProfileSettings')}
             />
           ),
         }}
