@@ -6,7 +6,7 @@ export default StyleSheet.create({
     backgroundColor: Colors.primary,
   },
 
-  noFavourite: {
+  message: {
     color: Colors.secondary,
     backgroundColor: Colors.primary,
     textAlign: 'center',

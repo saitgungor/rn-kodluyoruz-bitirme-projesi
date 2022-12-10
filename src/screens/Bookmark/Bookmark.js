@@ -1,12 +1,12 @@
 import React from 'react';
 import {View, FlatList, Text} from 'react-native';
-import styles from './Favourites.style';
+import styles from './Bookmark.style';
 import Config from 'react-native-config';
 import useFetchCoins from '../../hooks/useFetchCoins';
 import HomeCard from '../../components/Cards/HomeCard';
 import {useSelector} from 'react-redux';
 
-const Favourites = () => {
+const Bookmark = () => {
   const timePeriod = '24h';
   const [data] = useFetchCoins(Config.API_URL, timePeriod);
   const {favorites} = useSelector(state => state.favorite);
@@ -19,10 +19,9 @@ const Favourites = () => {
     <>
       {filteredList.length === 0 && (
         <>
-          <Text style={styles.noFavourite}>Your favorite list is empty.</Text>
-          <Text style={styles.noFavourite}>
-            {' '}
-            Press favourite icon on coin detail screen.
+          <Text style={styles.message}>Your bookmark list is empty.</Text>
+          <Text style={styles.message}>
+            Press bookmark icon on coin detail screen.
           </Text>
         </>
       )}
@@ -33,4 +32,4 @@ const Favourites = () => {
   );
 };
 
-export default Favourites;
+export default Bookmark;
