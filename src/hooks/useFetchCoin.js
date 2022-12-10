@@ -2,16 +2,17 @@ import {useState, useEffect} from 'react';
 import axios from 'axios';
 import Config from 'react-native-config';
 
-const useFetchCoin = (url, timePeriod) => {
+const useFetchCoin = url => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [timePeriod, setTimePeriod] = useState('24h');
 
   const fetchData = async () => {
     try {
       const response = await axios.get(url, {
         params: {
-          timePeriod: '24h',
+          timePeriod: timePeriod,
         },
         headers: {
           'X-RapidAPI-Key': Config.API_KEY,
@@ -19,9 +20,9 @@ const useFetchCoin = (url, timePeriod) => {
         },
       });
       setData(response.data.data.coin);
-      setLoading(false);
     } catch (err) {
       setError(err.message);
+    } finally {
       setLoading(false);
     }
   };
@@ -29,9 +30,9 @@ const useFetchCoin = (url, timePeriod) => {
   useEffect(() => {
     fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [timePeriod]);
 
-  return [data, loading, error];
+  return [data, loading, error, timePeriod, setTimePeriod];
 };
 
 export default useFetchCoin;

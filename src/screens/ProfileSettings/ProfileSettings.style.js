@@ -3,10 +3,9 @@ import Colors from '../../utils/ui/color';
 export default StyleSheet.create({
   container: {
     flex: 1,
-    paddingBottom: 20,
+    backgroundColor: Colors.primary,
   },
   firstContainer: {
-    flex: 1,
     backgroundColor: Colors.primary,
   },
   profileImage: {
@@ -16,29 +15,36 @@ export default StyleSheet.create({
     alignSelf: 'center',
     marginTop: 20,
   },
-  name: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    alignSelf: 'center',
-    marginTop: 10,
-    color: Colors.secondary,
-  },
-  userName: {
+  changeName: {
     fontSize: 15,
     alignSelf: 'center',
-    marginTop: 5,
-    color: Colors.inputColor,
-  },
-  bio: {
-    fontSize: 15,
-    textAlign: 'center',
-    marginHorizontal: 50,
     marginTop: 5,
     color: Colors.bioColor,
   },
-
   secondContainer: {
-    flex: 1,
+    backgroundColor: Colors.primary,
+    marginTop: 20,
+  },
+  name: {
+    fontSize: 15,
+    fontWeight: 'bold',
+    alignSelf: 'flex-start',
+    marginTop: 10,
+    marginHorizontal: 20,
+    color: Colors.secondary,
+    letterSpacing: 1,
+  },
+  input: {
     backgroundColor: Colors.secondary,
+    borderRadius: 10,
+    marginHorizontal: 20,
+    marginTop: 10,
+    height: 40,
+    paddingHorizontal: 10,
+  },
+  bio: {
+    height: 100,
+    textAlignVertical: 'top',
+    multiline: true,
   },
 });

@@ -43,18 +43,15 @@ export default StyleSheet.create({
     alignSelf: 'center',
   },
   chartConfig: {
-    backgroundGradientFrom: '#1E2923',
-    backgroundGradientFromOpacity: 0,
-    backgroundGradientTo: '#08130D',
-    backgroundGradientToOpacity: 0.5,
-    color: (opacity = 1) => `rgba(26, 255, 146, ${opacity})`,
-    strokeWidth: 2, // optional, default 3
-    barPercentage: 0.5,
-    useShadowColorFromDataset: false, // optional
+    backgroundGradientFrom: Colors.primary,
+    backgroundGradientTo: Colors.primary,
+    color: (opacity = 1) => `rgba(100, 300, 250, ${opacity})`,
+    strokeWidth: 3, // optional, default 3
+    barPercentage: 0.9,
   },
   chartStyle: {
-    marginVertical: 8,
     borderRadius: 16,
+    marginVertical: 5,
   },
   descriptionContainer: {
     padding: 10,

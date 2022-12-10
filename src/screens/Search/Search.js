@@ -1,5 +1,5 @@
 import {View, FlatList, Pressable, Text} from 'react-native';
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import styles from './Search.style';
 import Config from 'react-native-config';
 import useFetchCoins from '../../hooks/useFetchCoins';
@@ -7,29 +7,40 @@ import HomeCard from '../../components/Cards/HomeCard';
 import Input from '../../components/Input/Input';
 import AntDesign from '../../components/AntDesign';
 import Colors from '../../utils/ui/color';
+import Error from '../../components/Animations/Error';
+import Loading from '../../components/Animations/Loading/Loading';
+import Searching from '../../components/Animations/Searching';
 
-const Search = ({navigation}) => {
-  const timePeriod = '24h';
-  const [data] = useFetchCoins(Config.API_URL, timePeriod);
+const Search = () => {
+  const [data, loading, error] = useFetchCoins(Config.API_URL);
   const [searchValue, setSearchValue] = useState('');
   const [filteredList, setFilteredList] = useState(null);
 
   const handleSearch = () => {
-    const filteredList = data.filter(
+    const filter = data.filter(
       item =>
         item.name.toLowerCase().startsWith(searchValue.toLowerCase()) ||
         item.symbol.toLowerCase() === searchValue.toLowerCase(),
     );
-    setFilteredList(filteredList);
+    setFilteredList(filter);
+    setSearchValue('');
   };
 
   const renderItem = ({item}) => <HomeCard item={item} />;
+
+  if (loading) {
+    return <Loading />;
+  }
+
+  if (error) {
+    return <Error />;
+  }
 
   return (
     <>
       <View style={styles.inputContainer}>
         <Input
-          placeholder={'Search coin'}
+          placeholder={'Search for a coin'}
           value={searchValue}
           onChangeText={text => setSearchValue(text)}
           style={styles.input}
@@ -44,7 +55,11 @@ const Search = ({navigation}) => {
         </Pressable>
       </View>
       <View style={styles.flatListContainer}>
-        <FlatList data={filteredList || data} renderItem={renderItem} />
+        {filteredList ? (
+          <FlatList data={filteredList} renderItem={renderItem} />
+        ) : (
+          <Searching />
+        )}
       </View>
     </>
   );

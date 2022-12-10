@@ -1,30 +1,39 @@
 import {View, Text, FlatList, Alert, Button, Pressable} from 'react-native';
-import React from 'react';
+import React, {useEffect} from 'react';
 import useFetchNews from '../../hooks/useFetchNews';
 import Config from 'react-native-config';
 import style from './News.style';
 import {useState} from 'react';
 import NewsCard from '../../components/Cards/NewsCard';
 import Input from '../../components/Input/Input';
-import {TouchableOpacity} from 'react-native-gesture-handler';
 import AntDesign from '../../components/AntDesign';
 import Colors from '../../utils/ui/color';
+import Loading from '../../components/Animations/Loading/Loading';
+import Error from '../../components/Animations/Error';
 const News = () => {
   const [search, setSearch] = useState('');
   const [news, loading, error, setSymbol] = useFetchNews(Config.API_NEWS);
 
   const handleSearch = () => {
     search === ''
-      ? Alert.alert('Please enter a cryptocurrency symbol to search.')
+      ? Alert.alert('Please write something to search')
       : setSymbol(search);
     return setSearch('');
   };
 
   const renderItem = ({item}) => <NewsCard news={item} />;
 
+  if (loading) {
+    return <Loading />;
+  }
+
+  if (error) {
+    return <Error />;
+  }
+
   return (
     <View style={style.container}>
-      <View style={{flexDirection: 'row'}}>
+      <View style={style.innerContainer}>
         <Input
           placeholder={'Search news...'}
           value={search}
@@ -40,9 +49,7 @@ const News = () => {
           </View>
         </Pressable>
       </View>
-      {loading && <Text>Loading...</Text>}
-      {error && <Text>{error.message}</Text>}
-      {news.length > 0 && <FlatList data={news} renderItem={renderItem} />}
+      <FlatList data={news} renderItem={renderItem} />
     </View>
   );
 };

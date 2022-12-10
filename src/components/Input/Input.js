@@ -13,17 +13,24 @@ const Input = ({
   value,
   onChangeText,
   style,
+  textColor,
 }) => {
   return (
     <TextInput
       placeholder={placeholder}
+      placeholderTextColor={textColor}
       value={value}
       onChangeText={onChangeText}
       onBlur={onBlur}
       mode={mode}
       label={label}
       style={[styles.input, style]}
-      secureTextEntry={label === 'password' ? true : false}
+      secureTextEntry={
+        placeholder === 'Password' || placeholder === 'Confirm Password'
+          ? true
+          : false
+      }
+      multiline={placeholder === 'Enter your bio' ? true : false}
     />
   );
 };

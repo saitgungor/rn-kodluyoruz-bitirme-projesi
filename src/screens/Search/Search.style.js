@@ -5,24 +5,21 @@ export default StyleSheet.create({
     flex: 1,
     backgroundColor: Colors.primary,
   },
-
   inputContainer: {
     flexDirection: 'row',
     backgroundColor: Colors.primary,
     alignItems: 'center',
     justifyContent: 'center',
   },
-
   input: {
     color: Colors.primary,
     backgroundColor: Colors.secondary,
     width: '80%',
-    height: 50,
+    height: 40,
     borderRadius: 5,
     padding: 10,
     margin: 10,
   },
-
   iconContainer: {
     flexDirection: 'row',
     position: 'absolute',
@@ -31,12 +28,10 @@ export default StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-
   search_text: {
     color: Colors.tertiary,
     marginRight: 5,
   },
-
   pressed: {
     opacity: 0.5,
   },

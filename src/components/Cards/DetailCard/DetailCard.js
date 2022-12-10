@@ -7,13 +7,18 @@ import AntDesign from '../../AntDesign';
 import Colors from '../../../utils/ui/color';
 
 import {LineChart} from 'react-native-chart-kit';
+import {height, window} from '../../../utils/ui/dimensions';
 
-const DetailCard = ({data}) => {
+const DetailCard = ({data, timePeriod, setTimePeriod}) => {
   const {width} = useWindowDimensions();
   const contentWidth = width - 40;
   const iconName = data.change > 0 ? 'caretup' : 'caretdown';
   const iconColor = data.change > 0 ? Colors.arrowup : Colors.arrowdown;
   const price = data.price?.slice(0, 8);
+  const handleTimePeriod = time => {
+    setTimePeriod(time);
+    console.log(timePeriod);
+  };
   const tagsStyles = {
     p: {
       color: Colors.secondary,
@@ -47,35 +52,38 @@ const DetailCard = ({data}) => {
       <View>
         <LineChart
           data={{
-            labels: ['January', 'February', 'March', 'April', 'May', 'June'],
+            labels: data.labels,
             datasets: [
               {
-                data: [
-                  Math.random() * 100,
-                  Math.random() * 100,
-                  Math.random() * 100,
-                  Math.random() * 100,
-                  Math.random() * 100,
-                  Math.random() * 100,
-                ],
+                data: data.sparkline,
               },
             ],
           }}
-          width={Dimensions.get('window').width} // from react-native
-          height={220}
+          width={window.width} // from react-native
+          height={window.height / 2}
           yAxisLabel="$"
           yAxisSuffix="k"
-          yAxisInterval={2} // optional, defaults to 1
+          yAxisInterval={3} // optional, defaults to 1
           chartConfig={style.chartConfig}
           bezier
           style={style.chartStyle}
         />
         <View style={style.hoursContainer}>
-          <Text style={style.hours}>24h</Text>
-          <Text style={style.hours}>7d</Text>
-          <Text style={style.hours}>30d</Text>
-          <Text style={style.hours}>1y</Text>
-          <Text style={style.hours}>5y</Text>
+          <Text onPress={() => handleTimePeriod('24h')} style={style.hours}>
+            24h
+          </Text>
+          <Text onPress={() => handleTimePeriod('7d')} style={style.hours}>
+            7d
+          </Text>
+          <Text onPress={() => handleTimePeriod('30d')} style={style.hours}>
+            30d
+          </Text>
+          <Text onPress={() => handleTimePeriod('1y')} style={style.hours}>
+            1y
+          </Text>
+          <Text onPress={() => handleTimePeriod('5y')} style={style.hours}>
+            5y
+          </Text>
         </View>
       </View>
       <View style={style.descriptionContainer}>
