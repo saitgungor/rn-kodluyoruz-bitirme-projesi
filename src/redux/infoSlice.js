@@ -14,13 +14,13 @@ const infoSlice = createSlice({
   initialState,
   reducers: {
     updateName: (state, action) => {
-      state.name = action.payload.name;
+      state.name = action.payload;
     },
     updateUserName: (state, action) => {
-      state.userName = action.payload.userName;
+      state.userName = action.payload;
     },
     updateBio: (state, action) => {
-      state.bio = action.payload.bio;
+      state.bio = action.payload;
     },
     updateProfileImage: (state, action) => {
       state.profileImage = action.payload;

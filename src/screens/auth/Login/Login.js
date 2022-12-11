@@ -1,101 +1,96 @@
-import React, {useState} from 'react';
-import {View, StyleSheet} from 'react-native';
-import Svg, {Image, Ellipse, ClipPath} from 'react-native-svg';
-import Animated, {
-  useSharedValue,
-  useAnimatedStyle,
-  interpolate,
-  withTiming,
-  withDelay,
-  runOnJS,
-} from 'react-native-reanimated';
-import {width, height} from '../../../utils/ui/dimensions';
-import {LoginScreenButton} from '../../../components/Buttons';
-import {LoginScreenForm} from '../../../components/Forms';
-import {RegisterFormCloseButton} from '../../../components/Buttons';
+import React from 'react';
+import {View, Text} from 'react-native';
+import * as Yup from 'yup';
+import {Formik} from 'formik';
+import Input from '../../../components/Input';
 import styles from './Login.style';
-const Login = () => {
-  const [isRegistering, setIsRegistering] = useState(false);
-  const imagePosition = useSharedValue(1);
-  const imageAnimatedStyle = useAnimatedStyle(() => {
-    const interpolation = interpolate(
-      imagePosition.value,
-      [0, 1],
-      [-height * 0.6, 0],
-    );
-    return {
-      transform: [{translateY: withTiming(interpolation, {duration: 1000})}],
-    };
+import {useDispatch} from 'react-redux';
+import {login} from '../../../redux/authSlice';
+import {loginFB} from '../../../firebase/firebase';
+import Button from '../../../components/Button';
+import Colors from '../../../utils/ui/color';
+import LoginAnimation from '../../../components/Animations/LoginAnimation';
+import {KeyboardAvoidingView} from 'react-native';
+import {Platform} from 'react-native';
+
+const Login = ({navigation}) => {
+  const dispatch = useDispatch();
+
+  const validationSchema = Yup.object().shape({
+    email: Yup.string().email('Invalid email').required('Required'),
+    password: Yup.string().required('Required'),
   });
 
-  const buttonsAnimatedStyle = useAnimatedStyle(() => {
-    const interpolation = interpolate(imagePosition.value, [0, 1], [250, 0]);
-    return {
-      opacity: withTiming(imagePosition.value, {duration: 500}),
-      transform: [{translateY: withTiming(interpolation, {duration: 1000})}],
-    };
-  });
-
-  const closeButtonAnimatedStyle = useAnimatedStyle(() => {
-    return {
-      opacity: withTiming(imagePosition.value === 1 ? 0 : 1, {duration: 800}),
-    };
-  });
-
-  const formAnimatedStyle = useAnimatedStyle(() => {
-    return {
-      opacity:
-        imagePosition.value === 0
-          ? withDelay(400, withTiming(1, {duration: 1000}))
-          : withTiming(0, {duration: 300}),
-    };
-  });
-
-  const loginHandler = () => {
-    imagePosition.value = 0;
-  };
-
-  const registerHandler = () => {
-    imagePosition.value = 0;
-    if (!isRegistering) runOnJS(setIsRegistering)(true);
-  };
-
-  const closeFormHandler = () => {
-    imagePosition.value = 1;
-    if (isRegistering) runOnJS(setIsRegistering)(false);
+  const onSubmit = async values => {
+    const loginAuth = await loginFB(values);
+    console.log('loginAuth', loginAuth);
+    dispatch(login(loginAuth));
   };
 
   return (
-    <View style={styles.container}>
-      <Animated.View style={[StyleSheet.absoluteFill, imageAnimatedStyle]}>
-        <Svg height={height + 100} width={width}>
-          <ClipPath id="clipPathId">
-            <Ellipse cx={width / 2} rx={height} ry={height + 100} />
-          </ClipPath>
-          <Image
-            href={require('../../../assets/images/login-background.jpg')}
-            width={width + 100}
-            height={height + 100}
-            preserveAspectRatio="xMidYMid slice"
-            clipPath="url(#clipPathId)"
-          />
-        </Svg>
-        <Animated.View style={closeButtonAnimatedStyle}>
-          <RegisterFormCloseButton onPress={closeFormHandler} />
-        </Animated.View>
-      </Animated.View>
-      <View style={styles.buttonContainer}>
-        <Animated.View style={buttonsAnimatedStyle}>
-          <LoginScreenButton title={'LOG IN'} onPress={loginHandler} />
-        </Animated.View>
-        <Animated.View style={buttonsAnimatedStyle}>
-          <LoginScreenButton title={'REGISTER'} onPress={registerHandler} />
-        </Animated.View>
+    <KeyboardAvoidingView
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      style={styles.container}>
+      <View style={styles.animation}>
+        <LoginAnimation />
       </View>
-      <Animated.View style={[styles.formContainer, formAnimatedStyle]}>
-        <LoginScreenForm isRegistering={isRegistering} />
-      </Animated.View>
-    </View>
+      <Formik
+        initialValues={{email: '', password: ''}}
+        onSubmit={onSubmit}
+        validationSchema={validationSchema}>
+        {({
+          handleChange,
+          handleBlur,
+          handleSubmit,
+          values,
+          errors,
+          touched,
+        }) => (
+          <View style={styles.inner_container}>
+            <Input
+              style={styles.textInput}
+              label="Email"
+              mode="outlined"
+              onChangeText={handleChange('email')}
+              onBlur={handleBlur('email')}
+              value={values.email}
+              placeholder="Email"
+              textColor={Colors.inputColor}
+            />
+            {errors.email && touched.email && (
+              <Text style={styles.error}>{errors.email}</Text>
+            )}
+            <Input
+              style={styles.textInput}
+              label="password"
+              mode="outlined"
+              onChangeText={handleChange('password')}
+              onBlur={handleBlur('password')}
+              value={values.password}
+              placeholder="Password"
+              textColor={Colors.inputColor}
+              secureTextEntry={true}
+            />
+            {errors.password && touched.password && (
+              <Text style={styles.error}>{errors.password}</Text>
+            )}
+            <Button
+              style={styles.button}
+              mode="contained"
+              onPress={handleSubmit}>
+              <Text style={styles.buttonText}>Login</Text>
+            </Button>
+          </View>
+        )}
+      </Formik>
+      <View style={styles.register}>
+        <Text
+          onPress={() => navigation.navigate('Register')}
+          style={styles.registerText}>
+          Don't you have an account? Register
+        </Text>
+      </View>
+    </KeyboardAvoidingView>
   );
 };
 
