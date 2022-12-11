@@ -3,7 +3,8 @@ import Colors from '../../utils/ui/color';
 export default StyleSheet.create({
   container: {
     flex: 1,
-    paddingBottom: 20,
+    paddingBottom: 90,
+    backgroundColor: Colors.primary,
   },
   firstContainer: {
     flex: 1,
@@ -36,9 +37,13 @@ export default StyleSheet.create({
     marginTop: 5,
     color: Colors.bioColor,
   },
-
   secondContainer: {
     flex: 1,
-    backgroundColor: Colors.secondary,
+  },
+  updateBookmark: {
+    fontSize: 15,
+    textAlign: 'center',
+    color: Colors.inputColor,
+    marginTop: 10,
   },
 });

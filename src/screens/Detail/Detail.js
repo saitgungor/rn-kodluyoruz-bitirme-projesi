@@ -1,4 +1,4 @@
-import {View, Text, FlatList, ScrollView} from 'react-native';
+import {View, ScrollView} from 'react-native';
 import React from 'react';
 import style from './Detail.style';
 import Config from 'react-native-config';

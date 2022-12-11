@@ -1,18 +1,13 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {Image, Pressable} from 'react-native';
 
 import TabNavigation from '../TabNavigation';
 import Detail from '../../screens/Detail';
 import Colors from '../../utils/ui/color';
-import {useSelector, useDispatch} from 'react-redux';
-
+import ProfileSettings from '../../screens/ProfileSettings';
 const Stack = createNativeStackNavigator();
 
 const HomeStack = () => {
-  const dispatch = useDispatch();
-  const {favorites, activeProductId} = useSelector(state => state.favorite);
-
   return (
     <Stack.Navigator>
       <Stack.Screen
@@ -33,6 +28,18 @@ const HomeStack = () => {
           },
           headerTintColor: Colors.quaternary,
         })}
+      />
+      <Stack.Screen
+        name="ProfileSettings"
+        component={ProfileSettings}
+        options={{
+          title: 'Edit Profile',
+          headerTitleAlign: 'center',
+          headerStyle: {
+            backgroundColor: Colors.primary,
+          },
+          headerTintColor: Colors.quaternary,
+        }}
       />
     </Stack.Navigator>
   );

@@ -39,7 +39,7 @@ const TabNavigation = ({navigation}) => {
         },
       }}>
       <Tab.Screen
-        name="Home"
+        name="cryptOS"
         component={Home}
         options={{
           tabBarIcon: ({focused}) => (

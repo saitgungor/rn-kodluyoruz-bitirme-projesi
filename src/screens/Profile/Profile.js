@@ -1,7 +1,20 @@
 import {View, Text, Image} from 'react-native';
 import React from 'react';
 import style from './Profile.style';
-const Profile = () => {
+import Bookmark from '../Bookmark';
+import {Pressable} from 'react-native';
+import Colors from '../../utils/ui/color';
+import {useDispatch, useSelector} from 'react-redux';
+import {infoSelector} from '../../redux/infoSlice';
+const Profile = ({navigation}) => {
+  const dispatch = useDispatch();
+  const info = useSelector(infoSelector);
+  console.log(info);
+
+  const navigateBookmarkScreen = () => {
+    navigation.navigate('Bookmark');
+  };
+
   return (
     <View style={style.container}>
       <View style={style.firstContainer}>
@@ -9,15 +22,19 @@ const Profile = () => {
           style={style.profileImage}
           source={{uri: 'https://www.w3schools.com/howto/img_avatar.png'}}
         />
-        <Text style={style.name}>Jennie Kim</Text>
-        <Text style={style.userName}>@jenniekim</Text>
-        <Text style={style.bio}>
-          I love watching Anime while enjoying a cup of hot caremel machiatto
-        </Text>
+        <Text style={style.name}>{info.name}</Text>
+        <Text style={style.userName}>{info.userName}</Text>
+        <Text style={style.bio}>{info.bio}</Text>
       </View>
       <View style={style.secondContainer}>
-        <Text>Profile</Text>
+        <Bookmark />
       </View>
+      <Pressable onPress={navigateBookmarkScreen}>
+        <Text style={style.updateBookmark}>
+          Do you want to edit your{' '}
+          <Text style={{color: Colors.quaternary}}>bookmarks</Text> ?
+        </Text>
+      </Pressable>
     </View>
   );
 };

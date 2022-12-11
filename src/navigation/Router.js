@@ -6,12 +6,12 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import AuthNavigation from './AuthNavigation';
 import HomeStack from './HomeStack';
 import {useSelector} from 'react-redux';
-import {authSelector} from '../redux/authSlice';
+import {selectUser} from '../redux/authSlice';
 
 const Stack = createNativeStackNavigator();
 
 const Router = () => {
-  const isAuth = useSelector(authSelector).isAuth;
+  const user = useSelector(selectUser);
 
   return (
     <NavigationContainer>
@@ -19,7 +19,7 @@ const Router = () => {
         screenOptions={{
           headerShown: false,
         }}>
-        {isAuth ? (
+        {user ? (
           <Stack.Screen name="HomeStack" component={HomeStack} />
         ) : (
           <Stack.Screen name="AuthNavigation" component={AuthNavigation} />

@@ -3,7 +3,6 @@ import Colors from '../../../utils/ui/color';
 export default StyleSheet.create({
   container: {
     flex: 1,
-    paddingHorizontal: 10,
   },
   innerContainer: {
     padding: 10,
@@ -45,14 +44,11 @@ export default StyleSheet.create({
   chartConfig: {
     backgroundGradientFrom: Colors.primary,
     backgroundGradientTo: Colors.primary,
-    color: (opacity = 1) => `rgba(100, 300, 250, ${opacity})`,
+    color: (opacity = 1) => `rgba(0, 205, 255, ${opacity})`,
     strokeWidth: 3, // optional, default 3
     barPercentage: 0.9,
   },
-  chartStyle: {
-    borderRadius: 16,
-    marginVertical: 5,
-  },
+  chartstyle: {},
   descriptionContainer: {
     padding: 10,
   },
@@ -60,7 +56,6 @@ export default StyleSheet.create({
     color: Colors.quaternary,
     fontSize: 18,
     fontWeight: 'bold',
-    marginBottom: 10,
   },
   hoursContainer: {
     flexDirection: 'row',
