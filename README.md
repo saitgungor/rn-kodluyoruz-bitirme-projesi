@@ -2,7 +2,7 @@
 <h1 align="center"> 👋 Kodluyoruz Bootcamp Final Project</h1>
 <h3 align="center">Crypto Tracker App</h3>
 
-## cryptO
+# cryptOS
 
 ## Screenshots
 
