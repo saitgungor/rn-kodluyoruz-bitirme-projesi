@@ -1,28 +1,28 @@
-// create auth slice for redux
-
 import {createSlice} from '@reduxjs/toolkit';
 
-const initialState = {
-  isAuth: true,
-};
-
-const authSlice = createSlice({
-  name: 'auth',
-  initialState,
+export const authSlice = createSlice({
+  name: 'user',
+  initialState: {
+    user: false,
+  },
   reducers: {
-    login: state => {
-      state.isAuth = true;
-      console.log('login', state);
+    login: (state, action) => {
+      state.user = action.payload;
+      console.log('state.user', state.user);
     },
-    register: state => {
-      state.isAuth = true;
+    register: (state, action) => {
+      state.user = action.payload;
+      console.log('Register', state);
     },
     logout: state => {
-      state.isAuth = false;
+      state.user = false;
+      console.log('Logout', state);
     },
   },
 });
 
 export const {login, logout, register} = authSlice.actions;
-export const authSelector = state => state.auth;
+
+export const selectUser = state => state.user.user;
+
 export default authSlice.reducer;

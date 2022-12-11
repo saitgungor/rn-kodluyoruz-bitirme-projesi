@@ -1,12 +1,13 @@
 import {configureStore} from '@reduxjs/toolkit';
 import favoriteReducer from './favoriteSlicer';
 import authReducer from './authSlice';
+import infoReducer from './infoSlice';
 
 const store = configureStore({
   reducer: {
-    auth: authReducer,
+    user: authReducer,
     favorite: favoriteReducer,
-    auth: authReducer,
+    info: infoReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
