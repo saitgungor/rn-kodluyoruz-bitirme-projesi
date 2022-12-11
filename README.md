@@ -14,8 +14,11 @@
 <img src="https://user-images.githubusercontent.com/69719126/206919630-9ff1dbc0-62b5-4880-811c-44807b1a704c.png" width="222" height="480" />
 </div>
 
-## Setup
+## Video
 
+https://user-images.githubusercontent.com/69719126/206921225-839c396e-54f5-42c7-9381-8a1309cea0d6.mp4
+
+## Setup
 
 - React Native
 
