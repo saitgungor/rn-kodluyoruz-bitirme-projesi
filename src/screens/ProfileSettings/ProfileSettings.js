@@ -2,48 +2,39 @@ import {View, Text, Image} from 'react-native';
 import React from 'react';
 import style from './ProfileSettings.style';
 import Input from '../../components/Input/Input';
-import {useDispatch} from 'react-redux';
-import {updateUserInfo, logoutFB} from '../../firebase';
+import {useDispatch, useSelector} from 'react-redux';
+import {updateUserInfo, logoutFB} from '../../firebase/firebase';
 import {TouchableOpacity} from 'react-native-gesture-handler';
-import {updateBio, updateName, updateUserName} from '../../redux/infoSlice';
+import {
+  infoSelector,
+  updateBio,
+  updateName,
+  updateUserName,
+} from '../../redux/infoSlice';
 import {useState} from 'react';
-import {firebase} from '@react-native-firebase/firestore';
-const ProfileSettings = () => {
+import {logout} from '../../redux/authSlice';
+
+const ProfileSettings = ({navigation}) => {
   const [name, setName] = useState('');
   const [userName, setUserName] = useState('');
   const [bio, setBio] = useState('');
 
+  const info = useSelector(infoSelector);
   const dispatch = useDispatch();
 
-  // const updateUserInfoHandler = async () => {
-  //   const userInfo = await updateUserInfo(name, userName, bio);
-  //   dispatch(updateName(userInfo.name));
-  //   dispatch(updateUserName(userInfo.userName));
-  //   dispatch(updateBio(userInfo.bio));
-  // };
+  console.log(name, userName, bio);
 
-  const handleUpdate = () => {
-    const firestore = firebase.firestore();
-    const userRef = firestore.collection('users').doc('uid');
-    console.log(firestore.collection('users').doc('users'));
-
-    userRef
-      .update({
-        name: name,
-        username: userName,
-      })
-      .then(() => {
-        console.log('User updated!');
-        // Update successful.
-      })
-      .catch(error => {
-        console.log(error);
-        // Handle error.
-      });
+  const handleUpdateBio = () => {
+    dispatch(updateBio(bio));
+    dispatch(updateName(name));
+    dispatch(updateUserName(userName));
+    navigation.goBack();
   };
 
   const logoutHandler = async () => {
-    await logoutFB();
+    const logAuth = await logoutFB();
+    console.log(logAuth);
+    dispatch(logout());
   };
 
   return (
@@ -75,10 +66,8 @@ const ProfileSettings = () => {
           onChangeText={setBio}
         />
       </View>
-      <TouchableOpacity style={style.button}>
-        <Text style={style.buttonText} onPress={handleUpdate}>
-          Save
-        </Text>
+      <TouchableOpacity onPress={handleUpdateBio} style={style.button}>
+        <Text style={style.buttonText}>Save</Text>
       </TouchableOpacity>
       <TouchableOpacity onPress={logoutHandler} style={style.button}>
         <Text style={style.buttonText}>LogOut</Text>

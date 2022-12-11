@@ -9,6 +9,9 @@ import {login} from '../../../redux/authSlice';
 import {loginFB} from '../../../firebase/firebase';
 import Button from '../../../components/Button';
 import Colors from '../../../utils/ui/color';
+import LoginAnimation from '../../../components/Animations/LoginAnimation';
+import {KeyboardAvoidingView} from 'react-native';
+import {Platform} from 'react-native';
 
 const Login = ({navigation}) => {
   const dispatch = useDispatch();
@@ -25,7 +28,12 @@ const Login = ({navigation}) => {
   };
 
   return (
-    <View style={styles.container}>
+    <KeyboardAvoidingView
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      style={styles.container}>
+      <View style={styles.animation}>
+        <LoginAnimation />
+      </View>
       <Formik
         initialValues={{email: '', password: ''}}
         onSubmit={onSubmit}
@@ -82,7 +90,7 @@ const Login = ({navigation}) => {
           Don't you have an account? Register
         </Text>
       </View>
-    </View>
+    </KeyboardAvoidingView>
   );
 };
 

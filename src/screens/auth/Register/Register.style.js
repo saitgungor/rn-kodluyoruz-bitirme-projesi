@@ -35,4 +35,11 @@ export default StyleSheet.create({
     fontWeight: '500',
     letterSpacing: 1,
   },
+  animation: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 550,
+  },
 });
