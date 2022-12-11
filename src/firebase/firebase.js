@@ -1,8 +1,6 @@
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 import {showMessage} from 'react-native-flash-message';
-import {useDispatch} from 'react-redux';
-import {updateBio, updateName, updateUserName} from '../redux/infoSlice';
 
 export const loginFB = async values => {
   const {email, password} = values;
@@ -34,7 +32,7 @@ export const registerFB = async values => {
       password,
     );
     showMessage({
-      message: `Welcome ${registerAuth.user.email}`,
+      message: 'Welcome to the club!',
       type: 'success',
       icon: 'success',
       duration: 1000,
