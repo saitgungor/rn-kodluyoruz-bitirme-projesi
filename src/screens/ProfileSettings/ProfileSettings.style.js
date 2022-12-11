@@ -47,4 +47,22 @@ export default StyleSheet.create({
     textAlignVertical: 'top',
     multiline: true,
   },
+  button: {
+    backgroundColor: Colors.quaternary,
+    borderRadius: 10,
+    marginHorizontal: 20,
+    marginTop: 10,
+    height: 40,
+    paddingHorizontal: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  buttonText: {
+    color: Colors.primary,
+    fontSize: 15,
+    fontWeight: 'bold',
+  },
+  pressed: {
+    opacity: 0.5,
+  },
 });
