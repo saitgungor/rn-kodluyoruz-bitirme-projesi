@@ -1,6 +1,9 @@
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 import {showMessage} from 'react-native-flash-message';
+import {useDispatch} from 'react-redux';
+import {updateBio, updateName, updateUserName} from '../redux/infoSlice';
+
 export const loginFB = async values => {
   const {email, password} = values;
   try {
@@ -63,25 +66,53 @@ export const logoutFB = async () => {
   }
 };
 
-// update user profile name , userName , bio
-export const updateProfileFB = async ({name, userName, bio}) => {
-  try {
-    const response = await firestore()
-      .collection('users')
-      .doc(auth().currentUser.uid)
-      .update({
-        name,
-        userName,
-        bio,
-      });
-    return response;
-  } catch (e) {
-    showMessage({
-      message: String(e),
-      type: 'danger',
-      icon: 'danger',
-      position: 'top',
-      duration: 3000,
-    });
-  }
-};
+// add User info to firebase firestore
+// export const AddUserInfoFB = async values => {
+//   const {name, userName, bio} = values;
+//   const dispatch = useDispatch();
+//   try {
+//     const response = await firestore()
+//       .collection('Users')
+//       .doc(auth().currentUser.uid)
+//       .set({
+//         name,
+//         userName,
+//         bio,
+//       });
+//     dispatch(updateName(name));
+//     dispatch(updateUserName(userName));
+//     dispatch(updateBio(bio));
+//     return response;
+//   } catch (e) {
+//     showMessage({
+//       message: String(e),
+//       type: 'danger',
+//       icon: 'danger',
+//       position: 'top',
+//       duration: 3000,
+//     });
+//   }
+// };
+
+// // update user info in firebase firestore and redux store in react native
+// export const updateProfileFB = async ({name, userName, bio}) => {
+//   try {
+//     const response = await firestore()
+//       .collection('Users')
+//       .doc(auth().currentUser.uid)
+//       .update({
+//         name,
+//         userName,
+//         bio,
+//       });
+//     return response;
+//   } catch (e) {
+//     showMessage({
+//       message: String(e),
+//       type: 'danger',
+//       icon: 'danger',
+//       position: 'top',
+//       duration: 3000,
+//     });
+//   }
+// };
