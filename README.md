@@ -18,32 +18,36 @@
 - React Native
 
 ## Tools
-
-- Custom Hooks
 - React Navigation
-- Redux
+- Redux Toolkit
 - Vector Icons
 - Axios
 - Yup
 - Formik
+- Firebase
+- Lottie
+- React-native-chart-kit
+- React-native-flash-message
+- React-native-reanimated
+- React-native-svg
 
 ## Features
 
 ## API
 
-`API Linki: `
+`API Linki:https://coinranking1.p.rapidapi.com/coins &&  https://api.finage.co.uk/news/cryptocurrency`
 
 ## Beginning
 
 Clone this repository on your local machine.
 <br>
-`git clone `
+`git clone https://github.com/yurkenn/rn-kodluyoruz-bitirme-projesi.git `
 
 ## Use
 
 To use it after cloning the project:
 <br>
-`cd `
+`cd rn-kodluyoruz-bitirme-projesi `
 <br>
 `code .`
 <br>
