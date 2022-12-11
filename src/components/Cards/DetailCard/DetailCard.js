@@ -60,7 +60,7 @@ const DetailCard = ({data, timePeriod, setTimePeriod}) => {
             ],
           }}
           width={window.width} // from react-native
-          height={window.height / 2}
+          height={window.height / 2.2}
           yAxisLabel="$"
           yAxisSuffix="k"
           yAxisInterval={3} // optional, defaults to 1
@@ -68,24 +68,25 @@ const DetailCard = ({data, timePeriod, setTimePeriod}) => {
           bezier
           style={style.chartStyle}
         />
-        <View style={style.hoursContainer}>
-          <Text onPress={() => handleTimePeriod('24h')} style={style.hours}>
-            24h
-          </Text>
-          <Text onPress={() => handleTimePeriod('7d')} style={style.hours}>
-            7d
-          </Text>
-          <Text onPress={() => handleTimePeriod('30d')} style={style.hours}>
-            30d
-          </Text>
-          <Text onPress={() => handleTimePeriod('1y')} style={style.hours}>
-            1y
-          </Text>
-          <Text onPress={() => handleTimePeriod('5y')} style={style.hours}>
-            5y
-          </Text>
-        </View>
       </View>
+      <View style={style.hoursContainer}>
+        <Text onPress={() => handleTimePeriod('24h')} style={style.hours}>
+          24h
+        </Text>
+        <Text onPress={() => handleTimePeriod('7d')} style={style.hours}>
+          7d
+        </Text>
+        <Text onPress={() => handleTimePeriod('30d')} style={style.hours}>
+          30d
+        </Text>
+        <Text onPress={() => handleTimePeriod('1y')} style={style.hours}>
+          1y
+        </Text>
+        <Text onPress={() => handleTimePeriod('5y')} style={style.hours}>
+          5y
+        </Text>
+      </View>
+
       <View style={style.descriptionContainer}>
         <Text style={style.descriptionTitle}>Description of {data.symbol}</Text>
         <RenderHtml
