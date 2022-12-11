@@ -10,23 +10,29 @@ import {loginFB, registerFB} from '../../firebase';
 
 export const LoginScreenForm = ({isRegistering}) => {
   const dispatch = useDispatch();
-
-  const onSubmit = async values => {
-    if (isRegistering) {
-      const registerAuth = await registerFB(values);
-      console.log('registerAuth', registerAuth);
-      dispatch(register(registerAuth));
-    }
-    const loginAuth = await loginFB(values);
-    console.log('loginAuth', loginAuth);
-    dispatch(login(loginAuth));
-  };
-
   const validationSchema = Yup.object().shape({
     email: Yup.string().email('Invalid email').required('Required'),
     password: Yup.string().required('Required'),
     name: isRegistering ? Yup.string().required('Required') : null,
   });
+
+  const onSubmit = async values => {
+    if (isRegistering) {
+      const response = await registerFB(values);
+      if (response.user) {
+        dispatch(register(response.user));
+      } else {
+        console.log(response);
+      }
+    } else {
+      const response = await loginFB(values);
+      if (response.user) {
+        dispatch(login(response.user));
+      } else {
+        console.log(response);
+      }
+    }
+  };
 
   return (
     <Formik
