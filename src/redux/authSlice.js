@@ -12,7 +12,7 @@ export const authSlice = createSlice({
     },
     register: (state, action) => {
       state.user = action.payload;
-      console.log('Register', state);
+      console.log('Register', state.user);
     },
     logout: state => {
       state.user = false;

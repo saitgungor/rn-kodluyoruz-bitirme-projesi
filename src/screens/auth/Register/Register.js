@@ -6,12 +6,13 @@ import Input from '../../../components/Input';
 import styles from './Register.style';
 import {useDispatch} from 'react-redux';
 import {register} from '../../../redux/authSlice';
-import {registerFB} from '../../../firebase';
+import {registerFB} from '../../../firebase/firebase';
 import Button from '../../../components/Button';
 import Colors from '../../../utils/ui/color';
 import RegisterAnimation from '../../../components/Animations/RegisterAnimation';
 import {KeyboardAvoidingView} from 'react-native';
 import {Platform} from 'react-native';
+
 const Register = ({navigation}) => {
   const dispatch = useDispatch();
 
