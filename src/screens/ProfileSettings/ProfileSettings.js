@@ -2,15 +2,10 @@ import {View, Text, Image} from 'react-native';
 import React from 'react';
 import style from './ProfileSettings.style';
 import Input from '../../components/Input/Input';
-import {useDispatch, useSelector} from 'react-redux';
-import {updateUserInfo, logoutFB} from '../../firebase/firebase';
+import {useDispatch} from 'react-redux';
+import {addUserInfo, logoutFB, updateUserInfo} from '../../firebase/firebase';
 import {TouchableOpacity} from 'react-native-gesture-handler';
-import {
-  infoSelector,
-  updateBio,
-  updateName,
-  updateUserName,
-} from '../../redux/infoSlice';
+import {updateBio, updateName, updateUserName} from '../../redux/infoSlice';
 import {useState} from 'react';
 import {logout} from '../../redux/authSlice';
 
@@ -19,15 +14,13 @@ const ProfileSettings = ({navigation}) => {
   const [userName, setUserName] = useState('');
   const [bio, setBio] = useState('');
 
-  const info = useSelector(infoSelector);
   const dispatch = useDispatch();
 
-  console.log(name, userName, bio);
-
-  const handleUpdateBio = () => {
-    dispatch(updateBio(bio));
+  const handleUpdateBio = async () => {
     dispatch(updateName(name));
     dispatch(updateUserName(userName));
+    dispatch(updateBio(bio));
+    await addUserInfo({name, userName, bio});
     navigation.goBack();
   };
 
@@ -52,18 +45,21 @@ const ProfileSettings = ({navigation}) => {
           placeholder="Enter your name"
           style={style.input}
           onChangeText={setName}
+          value={name}
         />
         <Text style={style.name}>Username</Text>
         <Input
           placeholder="Enter your username"
           style={style.input}
           onChangeText={setUserName}
+          value={userName}
         />
         <Text style={style.name}>Bio</Text>
         <Input
           placeholder="Enter your bio"
           style={[style.input, style.bio]}
           onChangeText={setBio}
+          value={bio}
         />
       </View>
       <TouchableOpacity onPress={handleUpdateBio} style={style.button}>
