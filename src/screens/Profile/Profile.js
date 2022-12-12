@@ -6,11 +6,12 @@ import {Pressable} from 'react-native';
 import Colors from '../../utils/ui/color';
 import {useDispatch, useSelector} from 'react-redux';
 import {infoSelector} from '../../redux/infoSlice';
+import firestore from '@react-native-firebase/firestore';
+import {getUserInfo} from '../../firebase/firebase';
 const Profile = ({navigation}) => {
   const dispatch = useDispatch();
   const info = useSelector(infoSelector);
   console.log(info);
-
   const navigateBookmarkScreen = () => {
     navigation.navigate('Bookmark');
   };

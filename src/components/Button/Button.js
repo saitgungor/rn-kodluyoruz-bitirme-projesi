@@ -1,13 +1,12 @@
-import {Text, Pressable} from 'react-native';
+import {Text} from 'react-native';
 import React from 'react';
 import styles from './Button.style';
-const Button = ({children, onPress, style}) => {
+import {TouchableOpacity} from 'react-native-gesture-handler';
+const Button = ({children, onPress}) => {
   return (
-    <Pressable
-      onPress={onPress}
-      style={[({pressed}) => pressed && styles.pressed, styles.button, style]}>
+    <TouchableOpacity onPress={onPress} style={styles.button}>
       <Text style={styles.buttonText}>{children}</Text>
-    </Pressable>
+    </TouchableOpacity>
   );
 };
 

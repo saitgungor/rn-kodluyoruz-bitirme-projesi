@@ -73,4 +73,7 @@ export default StyleSheet.create({
     width: 40,
     textAlign: 'center',
   },
+  pressed: {
+    opacity: 0.5,
+  },
 });

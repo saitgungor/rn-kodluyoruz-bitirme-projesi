@@ -1,6 +1,8 @@
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 import {showMessage} from 'react-native-flash-message';
+import {useDispatch} from 'react-redux';
+import {updateBio, updateName, updateUserName} from '../redux/infoSlice';
 
 export const loginFB = async values => {
   const {email, password} = values;
@@ -64,53 +66,83 @@ export const logoutFB = async () => {
   }
 };
 
-// add User info to firebase firestore
-// export const AddUserInfoFB = async values => {
-//   const {name, userName, bio} = values;
-//   const dispatch = useDispatch();
-//   try {
-//     const response = await firestore()
-//       .collection('Users')
-//       .doc(auth().currentUser.uid)
-//       .set({
-//         name,
-//         userName,
-//         bio,
-//       });
-//     dispatch(updateName(name));
-//     dispatch(updateUserName(userName));
-//     dispatch(updateBio(bio));
-//     return response;
-//   } catch (e) {
-//     showMessage({
-//       message: String(e),
-//       type: 'danger',
-//       icon: 'danger',
-//       position: 'top',
-//       duration: 3000,
-//     });
-//   }
-// };
+export const querySnap = () => {
+  firestore()
+    .collection('Users')
+    .get()
+    .then(querySnapshot => {
+      querySnapshot.forEach(documentSnapshot => {
+        const userid = documentSnapshot.id;
+        const userdata = documentSnapshot.data();
+        console.log(userid, userdata);
+      });
+    });
+};
 
-// // update user info in firebase firestore and redux store in react native
-// export const updateProfileFB = async ({name, userName, bio}) => {
+export const addUserInfo = async values => {
+  const {name, userName, bio} = values;
+  try {
+    const add = await firestore().collection('Users').add({
+      name: name,
+      userName: userName,
+      bio: bio,
+    });
+
+    return add;
+  } catch (e) {
+    showMessage({
+      message: String(e),
+      type: 'danger',
+      icon: 'danger',
+      position: 'top',
+    });
+  }
+};
+
+// how to update current user's info in react native
+export const updateUserInfo = async values => {
+  const {name, userName, bio} = values;
+  try {
+    const update = await firestore().collection('Users').doc().update({
+      name: name,
+      userName: userName,
+      bio: bio,
+    });
+    return update;
+  } catch (e) {
+    showMessage({
+      message: String(e),
+      type: 'danger',
+      icon: 'danger',
+      position: 'top',
+    });
+  }
+};
+
+// export const getUserInfo = async () => {
 //   try {
-//     const response = await firestore()
-//       .collection('Users')
-//       .doc(auth().currentUser.uid)
-//       .update({
-//         name,
-//         userName,
-//         bio,
-//       });
-//     return response;
+//     const user = await firestore().collection('Users').get();
+//     return user;
 //   } catch (e) {
 //     showMessage({
 //       message: String(e),
 //       type: 'danger',
 //       icon: 'danger',
 //       position: 'top',
-//       duration: 3000,
 //     });
 //   }
-// };
+// }
+
+// export const deleteUserInfo = async () => {
+//   try {
+//     const deleteInfo = await firestore().collection('Users').doc().delete();
+//     return deleteInfo;
+//   } catch (e) {
+//     showMessage({
+//       message: String(e),
+//       type: 'danger',
+//       icon: 'danger',
+//       position: 'top',
+//     });
+//   }
+// }
