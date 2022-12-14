@@ -1,41 +1,42 @@
-import {View, Text, Image} from 'react-native';
-import React from 'react';
+import {View} from 'react-native';
+import React, {useEffect, useState} from 'react';
 import style from './Profile.style';
-import Bookmark from '../Bookmark';
-import {Pressable} from 'react-native';
-import Colors from '../../utils/ui/color';
-import {useDispatch, useSelector} from 'react-redux';
-import {infoSelector} from '../../redux/infoSlice';
+import {useSelector} from 'react-redux';
 import firestore from '@react-native-firebase/firestore';
-import {getUserInfo} from '../../firebase/firebase';
+import {FlatList} from 'react-native-gesture-handler';
+import {selectUserId} from '../../redux/authSlice';
+import ProfileCard from '../../components/Cards/ProfileCard/ProfileCard';
 const Profile = ({navigation}) => {
-  const dispatch = useDispatch();
-  const info = useSelector(infoSelector);
-  console.log(info);
+  const [users, setUsers] = useState([]);
+
+  const userId = useSelector(selectUserId);
+
+  useEffect(() => {
+    // Fetch the users data from Firestore
+    firestore()
+      .collection('Users')
+      .where('userId', '==', userId)
+      .get()
+      .then(snapshot => {
+        const fetchedUsers = snapshot.docs.map(doc => doc.data());
+        setUsers(fetchedUsers);
+      });
+  }, [userId]);
+
+  console.log(users);
+
   const navigateBookmarkScreen = () => {
     navigation.navigate('Bookmark');
   };
-
   return (
     <View style={style.container}>
-      <View style={style.firstContainer}>
-        <Image
-          style={style.profileImage}
-          source={{uri: 'https://www.w3schools.com/howto/img_avatar.png'}}
-        />
-        <Text style={style.name}>{info.name}</Text>
-        <Text style={style.userName}>{info.userName}</Text>
-        <Text style={style.bio}>{info.bio}</Text>
-      </View>
-      <View style={style.secondContainer}>
-        <Bookmark />
-      </View>
-      <Pressable onPress={navigateBookmarkScreen}>
-        <Text style={style.updateBookmark}>
-          Do you want to edit your{' '}
-          <Text style={{color: Colors.quaternary}}>bookmarks</Text> ?
-        </Text>
-      </Pressable>
+      <FlatList
+        data={users}
+        renderItem={({item}) => (
+          <ProfileCard info={item} onSelect={navigateBookmarkScreen} />
+        )}
+        keyExtractor={item => item.userId}
+      />
     </View>
   );
 };
