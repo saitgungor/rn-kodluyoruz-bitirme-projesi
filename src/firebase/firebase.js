@@ -2,7 +2,11 @@ import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 import {showMessage} from 'react-native-flash-message';
 import {useDispatch} from 'react-redux';
-import {updateBio, updateName, updateUserName} from '../redux/infoSlice';
+import {getUserId} from '../redux/authSlice';
+
+export const getUid = () => {
+  return auth().currentUser.uid;
+};
 
 export const loginFB = async values => {
   const {email, password} = values;
@@ -66,29 +70,21 @@ export const logoutFB = async () => {
   }
 };
 
-export const querySnap = () => {
-  firestore()
-    .collection('Users')
-    .get()
-    .then(querySnapshot => {
-      querySnapshot.forEach(documentSnapshot => {
-        const userid = documentSnapshot.id;
-        const userdata = documentSnapshot.data();
-        console.log(userid, userdata);
-      });
-    });
-};
-
-export const addUserInfo = async values => {
-  const {name, userName, bio} = values;
+export const updateUser = async (values, userId) => {
+  const docRef = firestore().collection('Users').doc(userId);
   try {
-    const add = await firestore().collection('Users').add({
-      name: name,
-      userName: userName,
-      bio: bio,
+    await docRef.update({
+      userName: values.userName,
+      name: values.fullName,
+      bio: values.bio,
     });
-
-    return add;
+    showMessage({
+      message: 'Welcome to the club!',
+      type: 'success',
+      icon: 'success',
+      duration: 1000,
+    });
+    return true;
   } catch (e) {
     showMessage({
       message: String(e),
@@ -96,53 +92,6 @@ export const addUserInfo = async values => {
       icon: 'danger',
       position: 'top',
     });
+    return false;
   }
 };
-
-// how to update current user's info in react native
-export const updateUserInfo = async values => {
-  const {name, userName, bio} = values;
-  try {
-    const update = await firestore().collection('Users').doc().update({
-      name: name,
-      userName: userName,
-      bio: bio,
-    });
-    return update;
-  } catch (e) {
-    showMessage({
-      message: String(e),
-      type: 'danger',
-      icon: 'danger',
-      position: 'top',
-    });
-  }
-};
-
-// export const getUserInfo = async () => {
-//   try {
-//     const user = await firestore().collection('Users').get();
-//     return user;
-//   } catch (e) {
-//     showMessage({
-//       message: String(e),
-//       type: 'danger',
-//       icon: 'danger',
-//       position: 'top',
-//     });
-//   }
-// }
-
-// export const deleteUserInfo = async () => {
-//   try {
-//     const deleteInfo = await firestore().collection('Users').doc().delete();
-//     return deleteInfo;
-//   } catch (e) {
-//     showMessage({
-//       message: String(e),
-//       type: 'danger',
-//       icon: 'danger',
-//       position: 'top',
-//     });
-//   }
-// }
