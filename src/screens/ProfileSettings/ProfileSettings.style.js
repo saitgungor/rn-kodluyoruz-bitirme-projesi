@@ -3,10 +3,10 @@ import Colors from '../../utils/ui/color';
 export default StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Colors.primary,
+    backgroundColor: Colors.dark,
   },
   firstContainer: {
-    backgroundColor: Colors.primary,
+    backgroundColor: Colors.dark,
   },
   profileImage: {
     width: 100,
@@ -19,10 +19,10 @@ export default StyleSheet.create({
     fontSize: 15,
     alignSelf: 'center',
     marginTop: 5,
-    color: Colors.bioColor,
+    color: Colors.grey100,
   },
   secondContainer: {
-    backgroundColor: Colors.primary,
+    backgroundColor: Colors.dark,
     marginTop: 20,
   },
   name: {
@@ -35,7 +35,7 @@ export default StyleSheet.create({
     letterSpacing: 1,
   },
   input: {
-    backgroundColor: Colors.secondary,
+    backgroundColor: Colors.white,
     borderRadius: 10,
     marginHorizontal: 20,
     marginTop: 10,
@@ -48,7 +48,7 @@ export default StyleSheet.create({
     multiline: true,
   },
   button: {
-    backgroundColor: Colors.quaternary,
+    backgroundColor: Colors.yellow,
     borderRadius: 10,
     marginHorizontal: 20,
     marginTop: 10,
@@ -58,11 +58,16 @@ export default StyleSheet.create({
     alignItems: 'center',
   },
   buttonText: {
-    color: Colors.primary,
+    color: Colors.dark,
     fontSize: 15,
     fontWeight: 'bold',
   },
   pressed: {
     opacity: 0.5,
+  },
+  error: {
+    color: Colors.yellow,
+    marginHorizontal: 20,
+    marginTop: 5,
   },
 });
