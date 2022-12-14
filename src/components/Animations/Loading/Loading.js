@@ -8,7 +8,7 @@ const Loading = () => {
       source={require('../../../assets/animation/101823-bitcoin.json')}
       autoPlay
       loop
-      style={{backgroundColor: Colors.primary}}
+      style={{backgroundColor: Colors.dark}}
     />
   );
 };

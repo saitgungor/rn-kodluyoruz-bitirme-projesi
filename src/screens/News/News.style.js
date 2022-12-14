@@ -4,7 +4,7 @@ import Colors from '../../utils/ui/color';
 export default StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Colors.primary,
+    backgroundColor: Colors.dark,
     alignItems: 'center',
     justifyContent: 'center',
     paddingBottom: 90,
@@ -13,8 +13,8 @@ export default StyleSheet.create({
     flexDirection: 'row',
   },
   input: {
-    color: Colors.primary,
-    backgroundColor: Colors.secondary,
+    color: Colors.dark,
+    backgroundColor: Colors.white,
     width: '80%',
     height: 40,
     borderRadius: 5,
@@ -30,7 +30,7 @@ export default StyleSheet.create({
     alignItems: 'center',
   },
   search_text: {
-    color: Colors.tertiary,
+    color: Colors.blue,
     marginRight: 5,
   },
   pressed: {

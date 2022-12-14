@@ -11,7 +11,7 @@ const HomeCard = ({item}) => {
   const marketCap = item.marketCap.slice(0, 6);
   const name = item.name.slice(0, 18);
   const iconName = item.change > 0 ? 'caretup' : 'caretdown';
-  const iconColor = item.change > 0 ? Colors.arrowup : Colors.arrowdown;
+  const iconColor = item.change > 0 ? Colors.green : Colors.red;
   const handleNavigation = uuid => {
     navigation.navigate('Detail', {id: uuid, title: item.symbol});
   };

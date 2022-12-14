@@ -8,7 +8,7 @@ const LoginAnimation = () => {
       source={require('../../../assets/animation/cryptocurrency-bitcoin-working-loop (2).json')}
       autoPlay
       loop
-      style={{backgroundColor: Colors.primary}}
+      style={{backgroundColor: Colors.dark}}
     />
   );
 };

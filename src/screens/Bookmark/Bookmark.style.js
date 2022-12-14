@@ -3,12 +3,11 @@ import Colors from '../../utils/ui/color';
 export default StyleSheet.create({
   flatListContainer: {
     flex: 1,
-    backgroundColor: Colors.primary,
+    backgroundColor: Colors.dark,
   },
-
   message: {
-    color: Colors.secondary,
-    backgroundColor: Colors.primary,
+    color: Colors.white,
+    backgroundColor: Colors.dark,
     textAlign: 'center',
     fontSize: 18,
     paddingTop: 15,

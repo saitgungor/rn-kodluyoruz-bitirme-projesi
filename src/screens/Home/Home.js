@@ -1,5 +1,5 @@
-import {View, Text, FlatList} from 'react-native';
-import React, {useState} from 'react';
+import {View, FlatList} from 'react-native';
+import React from 'react';
 import style from './Home.style';
 import Config from 'react-native-config';
 import useFetchCoins from '../../hooks/useFetchCoins';

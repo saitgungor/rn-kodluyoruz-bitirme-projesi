@@ -3,17 +3,17 @@ import Colors from '../../utils/ui/color';
 export default StyleSheet.create({
   flatListContainer: {
     flex: 1,
-    backgroundColor: Colors.primary,
+    backgroundColor: Colors.dark,
   },
   inputContainer: {
     flexDirection: 'row',
-    backgroundColor: Colors.primary,
+    backgroundColor: Colors.dark,
     alignItems: 'center',
     justifyContent: 'center',
   },
   input: {
-    color: Colors.primary,
-    backgroundColor: Colors.secondary,
+    color: Colors.dark,
+    backgroundColor: Colors.white,
     width: '80%',
     height: 40,
     borderRadius: 5,
@@ -29,7 +29,7 @@ export default StyleSheet.create({
     alignItems: 'center',
   },
   search_text: {
-    color: Colors.tertiary,
+    color: Colors.blue,
     marginRight: 5,
   },
   pressed: {

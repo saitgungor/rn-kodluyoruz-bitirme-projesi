@@ -1,5 +1,5 @@
 import {View, ScrollView} from 'react-native';
-import React from 'react';
+import React, {useCallback} from 'react';
 import style from './Detail.style';
 import Config from 'react-native-config';
 import useFetchCoin from '../../hooks/useFetchCoin';
@@ -22,13 +22,13 @@ const Detail = ({route, navigation}) => {
   const favoriteCoins = useSelector(state => state.favorite.favorites);
   const favorite = favoriteCoins.includes(id);
 
-  const headerButtonPressHandler = () => {
+  const headerButtonPressHandler = useCallback(() => {
     if (favorite) {
       dispatch(removeFavorite(id));
     } else {
       dispatch(addFavorite(id));
     }
-  };
+  }, [dispatch, favorite, id]);
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -37,14 +37,14 @@ const Detail = ({route, navigation}) => {
           <Ionicons
             name={favorite ? 'bookmark' : 'bookmark-outline'}
             size={25}
-            color={Colors.quaternary}
-            style={{marginRight: 10}}
+            color={Colors.yellow}
+            style={style.icon}
             onPress={headerButtonPressHandler}
           />
         );
       },
     });
-  }, [navigation, headerButtonPressHandler]);
+  }, [navigation, headerButtonPressHandler, favorite]);
 
   if (loading) {
     return <Loading />;

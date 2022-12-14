@@ -5,7 +5,17 @@ export default StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: Colors.primary,
+    backgroundColor: Colors.dark,
+  },
+  title: {
+    fontSize: 25,
+    fontWeight: 'bold',
+    color: Colors.white,
+    marginBottom: 20,
+  },
+  titleSmall: {
+    fontSize: 15,
+    color: Colors.white,
   },
   inner_container: {
     flex: 1,
@@ -13,8 +23,8 @@ export default StyleSheet.create({
     justifyContent: 'center',
   },
   textInput: {
-    backgroundColor: Colors.primary,
-    borderColor: Colors.secondary,
+    backgroundColor: Colors.dark,
+    borderColor: Colors.white,
     borderBottomWidth: 0.3,
     width: 300,
     height: 50,
@@ -22,10 +32,10 @@ export default StyleSheet.create({
     margin: 10,
     padding: 10,
     elevation: 5,
-    color: Colors.secondary,
+    color: Colors.white,
   },
   error: {
-    color: Colors.quaternary,
+    color: Colors.yellow,
   },
   login: {
     marginBottom: 20,
