@@ -13,21 +13,20 @@ const DetailCard = ({data, timePeriod, setTimePeriod}) => {
   const {width} = useWindowDimensions();
   const contentWidth = width - 40;
   const iconName = data.change > 0 ? 'caretup' : 'caretdown';
-  const iconColor = data.change > 0 ? Colors.arrowup : Colors.arrowdown;
+  const iconColor = data.change > 0 ? Colors.green : Colors.red;
   const price = data.price?.slice(0, 8);
 
   const handleTimePeriod = time => {
     setTimePeriod(time);
-    console.log(timePeriod);
   };
   const tagsStyles = {
     p: {
-      color: Colors.secondary,
+      color: Colors.white,
       fontSize: 16,
       lineHeight: 24,
     },
     h3: {
-      color: Colors.quaternary,
+      color: Colors.yellow,
       fontSize: 18,
       lineHeight: 24,
     },

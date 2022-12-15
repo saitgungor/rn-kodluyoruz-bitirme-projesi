@@ -1,8 +1,6 @@
 import {View, Text, Pressable, Linking} from 'react-native';
 import React from 'react';
 import style from './NewsCard.style';
-import {Link} from '@react-navigation/native';
-import Colors from '../../../utils/ui/color';
 
 const NewsCard = ({news}) => {
   // create open link function

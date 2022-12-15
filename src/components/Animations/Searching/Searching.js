@@ -8,7 +8,7 @@ const Searching = () => {
       source={require('../../../assets/animation/searching.json')}
       autoPlay
       loop
-      style={{backgroundColor: Colors.primary}}
+      style={{backgroundColor: Colors.dark}}
     />
   );
 };

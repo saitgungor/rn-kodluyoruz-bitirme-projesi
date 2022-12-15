@@ -1,5 +1,5 @@
-import {View, Text, FlatList, Alert, Button, Pressable} from 'react-native';
-import React, {useEffect} from 'react';
+import {View, Text, FlatList, Alert, Pressable} from 'react-native';
+import React from 'react';
 import useFetchNews from '../../hooks/useFetchNews';
 import Config from 'react-native-config';
 import style from './News.style';
@@ -45,7 +45,7 @@ const News = () => {
           onPress={handleSearch}>
           <View style={style.iconContainer}>
             <Text style={style.search_text}>Search</Text>
-            <AntDesign name="search1" size={20} color={Colors.tertiary} />
+            <AntDesign name="search1" size={20} color={Colors.blue} />
           </View>
         </Pressable>
       </View>

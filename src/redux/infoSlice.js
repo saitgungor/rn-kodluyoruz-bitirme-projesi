@@ -1,11 +1,9 @@
-//create redux slice
-
 import {createSlice} from '@reduxjs/toolkit';
 
 const initialState = {
-  name: 'Jennie Kim',
-  userName: '@jenniekim',
-  bio: 'I love watching Anime while enjoying a cup of hot caremel machiatto',
+  name: '',
+  userName: '',
+  bio: '',
   profileImage: 'https://www.w3schools.com/howto/img_avatar.png',
 };
 

@@ -6,7 +6,7 @@ export default StyleSheet.create({
     opacity: 0.5,
   },
   button: {
-    backgroundColor: Colors.quaternary,
+    backgroundColor: Colors.yellow,
     width: 300,
     height: 50,
     borderRadius: 5,
@@ -17,7 +17,7 @@ export default StyleSheet.create({
     justifyContent: 'center',
   },
   buttonText: {
-    color: Colors.primary,
+    color: Colors.dark,
     fontSize: 18,
     fontWeight: '600',
     letterSpacing: 1,

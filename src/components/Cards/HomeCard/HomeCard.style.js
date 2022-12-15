@@ -1,10 +1,9 @@
 import {StyleSheet} from 'react-native';
 import Colors from '../../../utils/ui/color';
-import {height, Height, width, Width} from '../../../utils/ui/dimensions';
 export default StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Colors.primary,
+    backgroundColor: Colors.dark,
   },
   innerContainer: {
     flexDirection: 'row',
@@ -24,7 +23,7 @@ export default StyleSheet.create({
     fontWeight: 'bold',
     letterSpacing: 0.5,
     marginBottom: 5,
-    color: Colors.secondary,
+    color: Colors.white,
   },
   detailContainer: {
     flexDirection: 'row',
@@ -39,7 +38,7 @@ export default StyleSheet.create({
     fontWeight: '500',
     letterSpacing: 0.5,
     marginRight: 5,
-    color: Colors.secondary,
+    color: Colors.white,
   },
   icon: {
     alignSelf: 'center',
@@ -53,7 +52,7 @@ export default StyleSheet.create({
   },
   rank: {
     fontWeight: 'bold',
-    color: Colors.secondary,
+    color: Colors.white,
   },
   pressed: {
     opacity: 0.5,

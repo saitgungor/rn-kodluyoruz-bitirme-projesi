@@ -24,9 +24,9 @@ const HomeStack = () => {
           title: route.params.title,
           headerTitleAlign: 'center',
           headerStyle: {
-            backgroundColor: Colors.primary,
+            backgroundColor: Colors.dark,
           },
-          headerTintColor: Colors.quaternary,
+          headerTintColor: Colors.yellow,
         })}
       />
       <Stack.Screen
@@ -36,9 +36,9 @@ const HomeStack = () => {
           title: 'Edit Profile',
           headerTitleAlign: 'center',
           headerStyle: {
-            backgroundColor: Colors.primary,
+            backgroundColor: Colors.dark,
           },
-          headerTintColor: Colors.quaternary,
+          headerTintColor: Colors.yellow,
         }}
       />
     </Stack.Navigator>

@@ -4,18 +4,12 @@ import * as Yup from 'yup';
 import {Formik} from 'formik';
 import Input from '../../../components/Input';
 import styles from './Register.style';
-import {useDispatch} from 'react-redux';
-import {register} from '../../../redux/authSlice';
 import {registerFB} from '../../../firebase/firebase';
 import Button from '../../../components/Button';
 import Colors from '../../../utils/ui/color';
 import RegisterAnimation from '../../../components/Animations/RegisterAnimation';
-import {KeyboardAvoidingView} from 'react-native';
-import {Platform} from 'react-native';
 
 const Register = ({navigation}) => {
-  const dispatch = useDispatch();
-
   const validationSchema = Yup.object().shape({
     email: Yup.string().email('Invalid email').required('Required'),
     password: Yup.string().required('Required'),
@@ -26,14 +20,13 @@ const Register = ({navigation}) => {
 
   const onSubmit = async values => {
     const registerAuth = await registerFB(values);
-    console.log('registerAuth', registerAuth);
-    dispatch(register(registerAuth));
+    if (registerAuth) {
+      navigation.navigate('RegisterForm');
+    }
   };
 
   return (
-    <KeyboardAvoidingView
-      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-      style={styles.container}>
+    <View style={styles.container}>
       <View style={styles.animation}>
         <RegisterAnimation />
       </View>
@@ -50,6 +43,8 @@ const Register = ({navigation}) => {
           touched,
         }) => (
           <View style={styles.inner_container}>
+            <Text style={styles.title}>Create Account</Text>
+            <Text style={styles.titleSmall}>Register and Get Started</Text>
             <Input
               style={styles.textInput}
               label="Email"
@@ -58,7 +53,7 @@ const Register = ({navigation}) => {
               onBlur={handleBlur('email')}
               value={values.email}
               placeholder="Email"
-              textColor={Colors.inputColor}
+              textColor={Colors.grey300}
             />
             {errors.email && touched.email && (
               <Text style={styles.error}>{errors.email}</Text>
@@ -72,7 +67,7 @@ const Register = ({navigation}) => {
               value={values.password}
               placeholder="Password"
               secureTextEntry={true}
-              textColor={Colors.inputColor}
+              textColor={Colors.grey300}
             />
             {errors.password && touched.password && (
               <Text style={styles.error}>{errors.password}</Text>
@@ -86,7 +81,7 @@ const Register = ({navigation}) => {
               value={values.confirmPassword}
               placeholder="Confirm Password"
               secureTextEntry={true}
-              textColor={Colors.inputColor}
+              textColor={Colors.grey300}
             />
             {errors.confirmPassword && touched.confirmPassword && (
               <Text style={styles.error}>{errors.confirmPassword}</Text>
@@ -107,7 +102,7 @@ const Register = ({navigation}) => {
           Do you have an account? Login
         </Text>
       </View>
-    </KeyboardAvoidingView>
+    </View>
   );
 };
 

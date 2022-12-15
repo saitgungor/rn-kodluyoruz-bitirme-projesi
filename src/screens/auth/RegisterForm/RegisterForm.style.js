@@ -15,7 +15,7 @@ export default StyleSheet.create({
   textInput: {
     backgroundColor: Colors.dark,
     borderColor: Colors.white,
-    borderBottomWidth: 1,
+    borderBottomWidth: 0.3,
     width: 300,
     height: 50,
     borderRadius: 5,
@@ -27,10 +27,10 @@ export default StyleSheet.create({
   error: {
     color: Colors.yellow,
   },
-  register: {
+  login: {
     marginBottom: 20,
   },
-  registerText: {
+  loginText: {
     color: Colors.orange,
     fontWeight: '500',
     letterSpacing: 1,

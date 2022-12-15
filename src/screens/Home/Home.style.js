@@ -3,7 +3,7 @@ import Colors from '../../utils/ui/color';
 export default StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Colors.primary,
+    backgroundColor: Colors.dark,
     paddingBottom: 90,
   },
 });

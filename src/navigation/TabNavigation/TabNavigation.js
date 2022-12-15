@@ -18,15 +18,15 @@ const TabNavigation = ({navigation}) => {
       screenOptions={{
         headerTitleAlign: 'center',
         headerStyle: {
-          backgroundColor: Colors.primary,
+          backgroundColor: Colors.dark,
         },
-        headerTintColor: Colors.quaternary,
+        headerTintColor: Colors.yellow,
         headerTitleStyle: {
           fontWeight: 'bold',
         },
         tabBarShowLabel: false,
         tabBarStyle: {
-          backgroundColor: Colors.loginButton,
+          backgroundColor: Colors.grey500,
           borderTopWidth: 0,
           elevation: 0,
           position: 'absolute',
@@ -46,7 +46,7 @@ const TabNavigation = ({navigation}) => {
             <Ionicons
               name="home"
               size={26}
-              color={focused ? Colors.quaternary : Colors.secondary}
+              color={focused ? Colors.yellow : Colors.white}
             />
           ),
         }}
@@ -59,7 +59,7 @@ const TabNavigation = ({navigation}) => {
             <Ionicons
               name="earth"
               size={26}
-              color={focused ? Colors.quaternary : Colors.secondary}
+              color={focused ? Colors.yellow : Colors.white}
             />
           ),
         }}
@@ -72,7 +72,7 @@ const TabNavigation = ({navigation}) => {
             <Ionicons
               name="search-outline"
               size={26}
-              color={focused ? Colors.quaternary : Colors.secondary}
+              color={focused ? Colors.yellow : Colors.white}
             />
           ),
         }}
@@ -85,7 +85,7 @@ const TabNavigation = ({navigation}) => {
             <Ionicons
               name="bookmarks"
               size={26}
-              color={focused ? Colors.quaternary : Colors.secondary}
+              color={focused ? Colors.yellow : Colors.white}
             />
           ),
         }}
@@ -98,14 +98,14 @@ const TabNavigation = ({navigation}) => {
             <Ionicons
               name="person"
               size={26}
-              color={focused ? Colors.quaternary : Colors.secondary}
+              color={focused ? Colors.yellow : Colors.white}
             />
           ),
           headerRight: () => (
             <Ionicons
               name="settings-outline"
               size={25}
-              color={Colors.quaternary}
+              color={Colors.yellow}
               style={{marginRight: 10}}
               onPress={() => navigation.navigate('ProfileSettings')}
             />
@@ -120,7 +120,7 @@ export default TabNavigation;
 
 const styles = StyleSheet.create({
   shadow: {
-    shadowColor: Colors.secondary,
+    shadowColor: Colors.white,
     shadowOffset: {
       width: 0,
       height: 10,

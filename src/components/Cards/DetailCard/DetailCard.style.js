@@ -11,17 +11,17 @@ export default StyleSheet.create({
     alignItems: 'center',
   },
   price: {
-    color: Colors.secondary,
+    color: Colors.white,
     fontSize: 25,
     fontWeight: 'bold',
     letterSpacing: 1,
   },
   title: {
-    color: Colors.secondary,
+    color: Colors.white,
     fontSize: 15,
   },
   description: {
-    color: Colors.secondary,
+    color: Colors.white,
     fontSize: 16,
     fontWeight: 'normal',
   },
@@ -42,8 +42,8 @@ export default StyleSheet.create({
     alignSelf: 'center',
   },
   chartConfig: {
-    backgroundGradientFrom: Colors.primary,
-    backgroundGradientTo: Colors.primary,
+    backgroundGradientFrom: Colors.dark,
+    backgroundGradientTo: Colors.dark,
     color: (opacity = 1) => `rgba(0, 205, 255, ${opacity})`,
     strokeWidth: 3, // optional, default 3
     barPercentage: 0.9,
@@ -53,7 +53,7 @@ export default StyleSheet.create({
     padding: 10,
   },
   descriptionTitle: {
-    color: Colors.quaternary,
+    color: Colors.yellow,
     fontSize: 18,
     fontWeight: 'bold',
   },
@@ -64,10 +64,10 @@ export default StyleSheet.create({
     padding: 10,
   },
   hours: {
-    backgroundColor: Colors.tertiary,
+    backgroundColor: Colors.blue,
     padding: 5,
     borderRadius: 5,
-    color: Colors.secondary,
+    color: Colors.white,
     fontSize: 15,
     fontWeight: 'bold',
     width: 40,

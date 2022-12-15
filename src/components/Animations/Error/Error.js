@@ -8,7 +8,7 @@ const Error = () => {
       source={require('../../../assets/animation/86271-error-no-data.json')}
       autoPlay
       loop
-      style={{backgroundColor: Colors.primary}}
+      style={{backgroundColor: Colors.dark}}
     />
   );
 };

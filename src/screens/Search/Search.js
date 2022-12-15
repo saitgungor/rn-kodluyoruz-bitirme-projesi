@@ -50,7 +50,7 @@ const Search = () => {
           onPress={handleSearch}>
           <View style={styles.iconContainer}>
             <Text style={styles.search_text}>Search</Text>
-            <AntDesign name="search1" size={20} color={Colors.tertiary} />
+            <AntDesign name="search1" size={20} color={Colors.blue} />
           </View>
         </Pressable>
       </View>

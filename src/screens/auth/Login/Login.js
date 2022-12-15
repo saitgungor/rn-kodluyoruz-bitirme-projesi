@@ -1,18 +1,17 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {View, Text} from 'react-native';
 import * as Yup from 'yup';
 import {Formik} from 'formik';
 import Input from '../../../components/Input';
 import styles from './Login.style';
 import {useDispatch} from 'react-redux';
-import {login} from '../../../redux/authSlice';
+import {getUserId, login} from '../../../redux/authSlice';
 import {loginFB} from '../../../firebase/firebase';
 import Button from '../../../components/Button';
 import Colors from '../../../utils/ui/color';
 import LoginAnimation from '../../../components/Animations/LoginAnimation';
-import {KeyboardAvoidingView} from 'react-native';
-import {Platform} from 'react-native';
-
+import firestore from '@react-native-firebase/firestore';
+import auth from '@react-native-firebase/auth';
 const Login = ({navigation}) => {
   const dispatch = useDispatch();
 
@@ -28,9 +27,7 @@ const Login = ({navigation}) => {
   };
 
   return (
-    <KeyboardAvoidingView
-      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-      style={styles.container}>
+    <View style={styles.container}>
       <View style={styles.animation}>
         <LoginAnimation />
       </View>
@@ -55,7 +52,7 @@ const Login = ({navigation}) => {
               onBlur={handleBlur('email')}
               value={values.email}
               placeholder="Email"
-              textColor={Colors.inputColor}
+              textColor={Colors.grey300}
             />
             {errors.email && touched.email && (
               <Text style={styles.error}>{errors.email}</Text>
@@ -68,7 +65,7 @@ const Login = ({navigation}) => {
               onBlur={handleBlur('password')}
               value={values.password}
               placeholder="Password"
-              textColor={Colors.inputColor}
+              textColor={Colors.grey300}
               secureTextEntry={true}
             />
             {errors.password && touched.password && (
@@ -90,7 +87,7 @@ const Login = ({navigation}) => {
           Don't you have an account? Register
         </Text>
       </View>
-    </KeyboardAvoidingView>
+    </View>
   );
 };
 
