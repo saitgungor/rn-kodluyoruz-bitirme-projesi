@@ -27,7 +27,7 @@ export default StyleSheet.create({
     fontSize: 15,
     alignSelf: 'center',
     marginTop: 5,
-    color: Colors.inputColor,
+    color: Colors.grey100,
   },
   bio: {
     fontSize: 15,

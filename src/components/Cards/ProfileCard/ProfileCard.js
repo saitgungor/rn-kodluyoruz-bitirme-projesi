@@ -4,13 +4,14 @@ import Bookmark from '../../../screens/Bookmark';
 import {Pressable} from 'react-native';
 import style from './ProfileCard.style';
 
-const ProfileCard = ({info, onSelect}) => {
+const ProfileCard = ({info, onSelect, infoSelector}) => {
+  console.log('infoSelector', infoSelector);
   return (
     <View style={style.container}>
       <View style={style.firstContainer}>
         <Image
           style={style.profileImage}
-          source={{uri: 'https://www.w3schools.com/howto/img_avatar.png'}}
+          source={{uri: infoSelector.profileImage}}
         />
         <Text style={style.name}>{info.name}</Text>
         <Text style={style.userName}>{info.userName}</Text>
