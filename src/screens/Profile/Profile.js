@@ -44,7 +44,6 @@ const Profile = ({navigation}) => {
         renderItem={({item}) => (
           <ProfileCard
             info={item}
-            userId={userId}
             infoSelector={userInfo}
             onSelect={navigateBookmarkScreen}
           />

@@ -3,8 +3,7 @@ import React from 'react';
 import Bookmark from '../../../screens/Bookmark';
 import {Pressable} from 'react-native';
 import style from './ProfileCard.style';
-import firestore from '@react-native-firebase/firestore';
-const ProfileCard = ({info, userId, onSelect, infoSelector}) => {
+const ProfileCard = ({info, onSelect, infoSelector}) => {
   return (
     <View style={style.container}>
       <View style={style.firstContainer}>
