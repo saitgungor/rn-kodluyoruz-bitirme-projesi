@@ -7,35 +7,34 @@ const useFetchCoins = url => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const fetchData = async () => {
-    try {
-      const response = await axios.get(url, {
-        params: {
-          referenceCurrencyUuid: 'yhjMzLPhuIDl',
-          timePeriod: '24h',
-          'tiers[0]': '1',
-          orderBy: 'marketCap',
-          orderDirection: 'desc',
-          limit: '50',
-          offset: '0',
-        },
-        headers: {
-          'X-RapidAPI-Key': Config.API_KEY,
-          'X-RapidAPI-Host': Config.API_HOST,
-        },
-      });
-      setData(response.data.data.coins);
-    } catch (err) {
-      setError(err.message);
-    } finally {
-      setLoading(false);
-    }
-  };
-
   useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(url, {
+          params: {
+            referenceCurrencyUuid: 'yhjMzLPhuIDl',
+            timePeriod: '24h',
+            'tiers[0]': '1',
+            orderBy: 'marketCap',
+            orderDirection: 'desc',
+            limit: '50',
+            offset: '0',
+          },
+          headers: {
+            'X-RapidAPI-Key': Config.API_KEY,
+            'X-RapidAPI-Host': Config.API_HOST,
+          },
+        });
+        setData(response.data.data.coins);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
     fetchData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [url]);
 
   return [data, loading, error];
 };

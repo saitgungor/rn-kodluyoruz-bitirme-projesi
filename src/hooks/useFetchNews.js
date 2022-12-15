@@ -1,5 +1,4 @@
-import {View, Text} from 'react-native';
-import React, {useEffect, useState} from 'react';
+import {useEffect, useState} from 'react';
 import axios from 'axios';
 import Config from 'react-native-config';
 
@@ -9,25 +8,25 @@ const useFetchNews = url => {
   const [error, setError] = useState(null);
   const [symbol, setSymbol] = useState('crypto');
 
-  const fetchNews = async () => {
-    try {
-      const response = await axios.get(`${url}${symbol}`, {
-        params: {
-          apikey: Config.API_NEWS_KEY,
-          ticker: symbol,
-        },
-      });
-      setNews(response.data.news);
-    } catch (err) {
-      setError(err.message);
-    } finally {
-      setLoading(false);
-    }
-  };
-
   useEffect(() => {
+    const fetchNews = async () => {
+      try {
+        const response = await axios.get(`${url}${symbol}`, {
+          params: {
+            apikey: Config.API_NEWS_KEY,
+            ticker: symbol,
+          },
+        });
+        setNews(response.data.news);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
     fetchNews();
-  }, [symbol]);
+  }, [symbol, url]);
 
   return [news, loading, error, setSymbol];
 };

@@ -1,8 +1,6 @@
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 import {showMessage} from 'react-native-flash-message';
-import {useDispatch} from 'react-redux';
-import {getUserId} from '../redux/authSlice';
 
 export const getUid = () => {
   return auth().currentUser.uid;
@@ -79,7 +77,7 @@ export const updateUser = async (values, userId) => {
       bio: values.bio,
     });
     showMessage({
-      message: 'Welcome to the club!',
+      message: 'Profile updated',
       type: 'success',
       icon: 'success',
       duration: 1000,
