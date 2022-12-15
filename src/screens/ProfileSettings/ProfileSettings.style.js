@@ -31,7 +31,7 @@ export default StyleSheet.create({
     alignSelf: 'flex-start',
     marginTop: 10,
     marginHorizontal: 20,
-    color: Colors.secondary,
+    color: Colors.white,
     letterSpacing: 1,
   },
   input: {

@@ -5,12 +5,12 @@ import {Formik} from 'formik';
 import Input from '../../../components/Input';
 import styles from './Login.style';
 import {useDispatch} from 'react-redux';
-import {login} from '../../../redux/authSlice';
+import {getUserId, login} from '../../../redux/authSlice';
 import {loginFB} from '../../../firebase/firebase';
 import Button from '../../../components/Button';
 import Colors from '../../../utils/ui/color';
 import LoginAnimation from '../../../components/Animations/LoginAnimation';
-
+import firestore from '@react-native-firebase/firestore';
 const Login = ({navigation}) => {
   const dispatch = useDispatch();
 
@@ -20,9 +20,12 @@ const Login = ({navigation}) => {
   });
 
   const onSubmit = async values => {
+    const docRef = firestore().collection('Users').doc();
+    const userId = docRef.id;
     const loginAuth = await loginFB(values);
     console.log('loginAuth', loginAuth);
     dispatch(login(loginAuth));
+    dispatch(getUserId(userId));
   };
 
   return (
