@@ -1,7 +1,7 @@
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 import {showMessage} from 'react-native-flash-message';
-
+import storage from '@react-native-firebase/storage';
 export const getUid = () => {
   return auth().currentUser.uid;
 };
@@ -75,6 +75,36 @@ export const updateUser = async (values, userId) => {
       userName: values.userName,
       name: values.fullName,
       bio: values.bio,
+    });
+    showMessage({
+      message: 'Profile updated',
+      type: 'success',
+      icon: 'success',
+      duration: 1000,
+    });
+    return true;
+  } catch (e) {
+    showMessage({
+      message: String(e),
+      type: 'danger',
+      icon: 'danger',
+      position: 'top',
+    });
+    return false;
+  }
+};
+
+export const uploadImage = async (uri, userId) => {
+  const uploadUri = uri;
+  let filename = uploadUri.substring(uploadUri.lastIndexOf('/') + 1);
+  const storageRef = storage().ref(`images/${filename}`);
+  const task = storageRef.putFile(uploadUri);
+  try {
+    await task;
+    const url = await storageRef.getDownloadURL();
+    const docRef = firestore().collection('Users').doc(userId);
+    await docRef.update({
+      avatar: url,
     });
     showMessage({
       message: 'Profile updated',

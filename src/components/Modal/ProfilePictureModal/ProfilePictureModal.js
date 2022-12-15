@@ -4,11 +4,13 @@ import {View, Text} from 'react-native';
 import Modal from 'react-native-modal';
 import style from './ProfilePictureModal.style';
 import ImagePicker from 'react-native-image-crop-picker';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {updateProfileImage} from '../../../redux/infoSlice';
+import {uploadImage} from '../../../firebase/firebase';
+import {selectUserId} from '../../../redux/authSlice';
 const ProfilePictureModal = ({visible, onClose, onSend}) => {
   const dispatch = useDispatch();
-
+  const userId = useSelector(selectUserId);
   const handleTakePicture = () => {
     // Code to take a picture goes here
     ImagePicker.openCamera({
@@ -18,6 +20,7 @@ const ProfilePictureModal = ({visible, onClose, onSend}) => {
     }).then(image => {
       console.log(image);
       dispatch(updateProfileImage(image.path));
+      uploadImage(image.path, userId);
     });
   };
 

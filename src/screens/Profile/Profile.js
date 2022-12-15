@@ -7,13 +7,13 @@ import {FlatList} from 'react-native-gesture-handler';
 import {selectUserId} from '../../redux/authSlice';
 import ProfileCard from '../../components/Cards/ProfileCard/ProfileCard';
 import Loading from '../../components/Animations/Loading';
-import Error from '../../components/Animations/Error';
 import {infoSelector} from '../../redux/infoSlice';
 const Profile = ({navigation}) => {
   const [users, setUsers] = useState([]);
+  const [loading, setLoading] = useState(true);
   const userId = useSelector(selectUserId);
   const userInfo = useSelector(infoSelector);
-  console.log('userInfo', userInfo);
+
   useEffect(() => {
     try {
       const unsubscribe = firestore()
@@ -22,33 +22,21 @@ const Profile = ({navigation}) => {
         .onSnapshot(snapshot => {
           const fetchedUsers = snapshot.docs.map(doc => doc.data());
           setUsers(fetchedUsers);
+          setLoading(false);
         });
       return () => unsubscribe();
     } catch (e) {
       console.log(e);
     }
-  }, [userId]);
-
-  console.log(users);
-  // const uploadAndUpdatePicture = async () => {
-  //   // Upload the image to Firebase Storage
-  //   const pictureUrl = await storage()
-  //     .ref(`profilePictures/${userId}`)
-  //     .put(image);
-
-  //   // Update the user's document in Firestore
-  //   await firestore().collection('users').doc(userId).update({
-  //     picture: pictureUrl,
-  //   });
-  // };
-
-  // // Call the async function to upload and update the user's picture
-  // uploadAndUpdatePicture();
+  }, []);
 
   const navigateBookmarkScreen = () => {
     navigation.navigate('Bookmark');
   };
 
+  if (loading) {
+    return <Loading />;
+  }
   return (
     <View style={style.container}>
       <FlatList
@@ -56,11 +44,11 @@ const Profile = ({navigation}) => {
         renderItem={({item}) => (
           <ProfileCard
             info={item}
+            userId={userId}
             infoSelector={userInfo}
             onSelect={navigateBookmarkScreen}
           />
         )}
-        keyExtractor={item => item.userId}
       />
     </View>
   );

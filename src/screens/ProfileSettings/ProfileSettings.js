@@ -33,7 +33,6 @@ const ProfileSettings = ({navigation}) => {
   const onSubmit = async values => {
     try {
       const user = await updateUser(values, userId);
-      console.log(user);
     } catch (error) {
       console.log(error);
     }

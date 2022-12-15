@@ -18,7 +18,6 @@ const DetailCard = ({data, timePeriod, setTimePeriod}) => {
 
   const handleTimePeriod = time => {
     setTimePeriod(time);
-    console.log(timePeriod);
   };
   const tagsStyles = {
     p: {

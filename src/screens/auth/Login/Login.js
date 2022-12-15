@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {View, Text} from 'react-native';
 import * as Yup from 'yup';
 import {Formik} from 'formik';
@@ -11,6 +11,7 @@ import Button from '../../../components/Button';
 import Colors from '../../../utils/ui/color';
 import LoginAnimation from '../../../components/Animations/LoginAnimation';
 import firestore from '@react-native-firebase/firestore';
+import auth from '@react-native-firebase/auth';
 const Login = ({navigation}) => {
   const dispatch = useDispatch();
 
@@ -20,12 +21,9 @@ const Login = ({navigation}) => {
   });
 
   const onSubmit = async values => {
-    const docRef = firestore().collection('Users').doc();
-    const userId = docRef.id;
     const loginAuth = await loginFB(values);
     console.log('loginAuth', loginAuth);
     dispatch(login(loginAuth));
-    dispatch(getUserId(userId));
   };
 
   return (

@@ -3,15 +3,14 @@ import React from 'react';
 import Bookmark from '../../../screens/Bookmark';
 import {Pressable} from 'react-native';
 import style from './ProfileCard.style';
-
-const ProfileCard = ({info, onSelect, infoSelector}) => {
-  console.log('infoSelector', infoSelector);
+import firestore from '@react-native-firebase/firestore';
+const ProfileCard = ({info, userId, onSelect, infoSelector}) => {
   return (
     <View style={style.container}>
       <View style={style.firstContainer}>
         <Image
           style={style.profileImage}
-          source={{uri: infoSelector.profileImage}}
+          source={{uri: info.avatar || infoSelector.avatar}}
         />
         <Text style={style.name}>{info.name}</Text>
         <Text style={style.userName}>{info.userName}</Text>
